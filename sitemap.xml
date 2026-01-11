@@ -5,10 +5,6 @@
          <lastmod>2026-01-11</lastmod>
     </url>
     <url>
-         <loc>https://autonomous-minicar-battle.github.io/togikaidrive-site/controllers/</loc>
-         <lastmod>2026-01-11</lastmod>
-    </url>
-    <url>
          <loc>https://autonomous-minicar-battle.github.io/togikaidrive-site/setup/</loc>
          <lastmod>2026-01-11</lastmod>
     </url>
@@ -18,6 +14,22 @@
     </url>
     <url>
          <loc>https://autonomous-minicar-battle.github.io/togikaidrive-site/advanced/yolo/</loc>
+         <lastmod>2026-01-11</lastmod>
+    </url>
+    <url>
+         <loc>https://autonomous-minicar-battle.github.io/togikaidrive-site/basics/config/</loc>
+         <lastmod>2026-01-11</lastmod>
+    </url>
+    <url>
+         <loc>https://autonomous-minicar-battle.github.io/togikaidrive-site/basics/controllers/</loc>
+         <lastmod>2026-01-11</lastmod>
+    </url>
+    <url>
+         <loc>https://autonomous-minicar-battle.github.io/togikaidrive-site/basics/motor/</loc>
+         <lastmod>2026-01-11</lastmod>
+    </url>
+    <url>
+         <loc>https://autonomous-minicar-battle.github.io/togikaidrive-site/basics/sensors/</loc>
          <lastmod>2026-01-11</lastmod>
     </url>
     <url>
@@ -45,7 +57,11 @@
          <lastmod>2026-01-11</lastmod>
     </url>
     <url>
-         <loc>https://autonomous-minicar-battle.github.io/togikaidrive-site/lesson/motor/</loc>
+         <loc>https://autonomous-minicar-battle.github.io/togikaidrive-site/lesson/control/</loc>
+         <lastmod>2026-01-11</lastmod>
+    </url>
+    <url>
+         <loc>https://autonomous-minicar-battle.github.io/togikaidrive-site/lesson/decision/</loc>
          <lastmod>2026-01-11</lastmod>
     </url>
     <url>
@@ -53,19 +69,11 @@
          <lastmod>2026-01-11</lastmod>
     </url>
     <url>
-         <loc>https://autonomous-minicar-battle.github.io/togikaidrive-site/lesson/planning/</loc>
-         <lastmod>2026-01-11</lastmod>
-    </url>
-    <url>
-         <loc>https://autonomous-minicar-battle.github.io/togikaidrive-site/lesson/sensors/</loc>
+         <loc>https://autonomous-minicar-battle.github.io/togikaidrive-site/lesson/recognition/</loc>
          <lastmod>2026-01-11</lastmod>
     </url>
     <url>
          <loc>https://autonomous-minicar-battle.github.io/togikaidrive-site/reference/camera/</loc>
-         <lastmod>2026-01-11</lastmod>
-    </url>
-    <url>
-         <loc>https://autonomous-minicar-battle.github.io/togikaidrive-site/reference/config/</loc>
          <lastmod>2026-01-11</lastmod>
     </url>
     <url>
