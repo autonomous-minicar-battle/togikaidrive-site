@@ -2753,16 +2753,8 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>python<span class="w"> </span>run.py
 </code></pre></div>
 <h3 id="_7">コントローラー操作</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>        [LB]              [RB]
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>         ┌─────────────────┐
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>         │                 │
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    [←→] │    [BACK] [S]   │  [Y]
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    [↑↓] │                 │[X] [B]
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>         │   [LOGICOOL]    │  [A]
-<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>         │                 │
-<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>         │ [LSTICKB]       │     [RSTICKB]
-<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>         └─────────────────┘
-</code></pre></div>
+<p><img alt="コントローラー" src="assets/images/controller.png" /></p>
+<p>Logicool F710などを利用</p>
 <table>
 <thead>
 <tr>
@@ -2818,12 +2810,12 @@
 <hr />
 <h2 id="4-data_viewer">4. データ分析（data_viewer）</h2>
 <h3 id="_9">インストール（初回のみ）</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Romihi/data_viewer.git
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nb">cd</span><span class="w"> </span>data_viewer
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Romihi/data_viewer.git
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nb">cd</span><span class="w"> </span>data_viewer
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
 </code></pre></div>
 <h3 id="_10">起動</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>python<span class="w"> </span>app.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>python<span class="w"> </span>app.py
 </code></pre></div>
 <p>ブラウザで <code>http://localhost:5000</code> にアクセス</p>
 <h3 id="_11">主な機能</h3>
@@ -2866,10 +2858,10 @@
 <hr />
 <h2 id="5">5. 学習</h2>
 <h3 id="configpy_2">config.py 設定</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">PLAN</span> <span class="o">=</span> <span class="s2">&quot;donkeycar&quot;</span>  <span class="c1"># おすすめ</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">EPOCHS</span> <span class="o">=</span> <span class="mi">30</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">64</span>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="n">MODEL_INPUT_IMAGE</span> <span class="o">=</span> <span class="s2">&quot;cam1/image_array&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">PLAN</span> <span class="o">=</span> <span class="s2">&quot;donkeycar&quot;</span>  <span class="c1"># おすすめ</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">EPOCHS</span> <span class="o">=</span> <span class="mi">30</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">64</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">MODEL_INPUT_IMAGE</span> <span class="o">=</span> <span class="s2">&quot;cam1/image_array&quot;</span>
 </code></pre></div>
 <h3 id="_13">モデル選択</h3>
 <table>
@@ -2900,23 +2892,23 @@
 </table>
 <h3 id="data_viewer">実行（data_viewerを使用）</h3>
 <p>data_viewerの学習機能を使用するか、コマンドラインで実行：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>python<span class="w"> </span>train_pytorch.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>python<span class="w"> </span>train_pytorch.py
 </code></pre></div>
 <h3 id="_14">学習の評価</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>良い例: Train Loss: 0.008, Val Loss: 0.009（両方下がる）
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>悪い例: Train Loss: 0.003, Val Loss: 0.040（Val Lossが上がる＝過学習）
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>良い例: Train Loss: 0.008, Val Loss: 0.009（両方下がる）
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>悪い例: Train Loss: 0.003, Val Loss: 0.040（Val Lossが上がる＝過学習）
 </code></pre></div>
 <hr />
 <h2 id="6">6. 自動走行</h2>
 <h3 id="configpy_3">config.py 設定</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">PLAN</span> <span class="o">=</span> <span class="s2">&quot;donkeycar&quot;</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">MODEL_NAME</span> <span class="o">=</span> <span class="s2">&quot;donkeycar_YYYYMMDD_HHMMSS.pth&quot;</span>  <span class="c1"># 学習で生成されたファイル名</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">PLAN</span> <span class="o">=</span> <span class="s2">&quot;donkeycar&quot;</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">MODEL_NAME</span> <span class="o">=</span> <span class="s2">&quot;donkeycar_YYYYMMDD_HHMMSS.pth&quot;</span>  <span class="c1"># 学習で生成されたファイル名</span>
 </code></pre></div>
 <h3 id="_15">実行</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>python<span class="w"> </span>run.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>python<span class="w"> </span>run.py
 </code></pre></div>
 <h3 id="s">モード切替（Sボタン）</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>user（手動）→ auto_str（ステアリング自動）→ auto（完全自動）→ user → ...
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>user（手動）→ auto_str（ステアリング自動）→ auto（完全自動）→ user → ...
 </code></pre></div>
 <table>
 <thead>
@@ -2967,15 +2959,11 @@
 </tr>
 <tr>
 <td>ハンドルを切らない</td>
-<td>データを追加して再学習</td>
+<td>データを追加して再学習、学習のepochを進める</td>
 </tr>
 <tr>
-<td>壁にぶつかる</td>
-<td>データを追加して再学習</td>
-</tr>
-<tr>
-<td>ふらふらする</td>
-<td>滑らかな操作でデータ再収集</td>
+<td>壁にぶつかる・ふらふらする</td>
+<td>データクレンジングを行い、データの精度を高めて再学習</td>
 </tr>
 </tbody>
 </table>
@@ -3085,6 +3073,7 @@
 <li>ゴール通過またはPエリア停止で終了</li>
 </ol>
 <h3 id="_25">記録シート</h3>
+<p><a class="md-button" href="../assets/record_sheet.csv">記録シートをダウンロード (CSV)</a></p>
 <table>
 <thead>
 <tr>
@@ -3135,12 +3124,12 @@
 <hr />
 <h2 id="_26">クイックリファレンス</h2>
 <h3 id="_27">よく使うコマンド</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>python<span class="w"> </span>motor.py<span class="w">        </span><span class="c1"># モーター調整</span>
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>python<span class="w"> </span>ultrasonic.py<span class="w">   </span><span class="c1"># 超音波センサー確認</span>
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>python<span class="w"> </span>lidar.py<span class="w">        </span><span class="c1"># LiDAR確認</span>
-<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>python<span class="w"> </span>monitor.py<span class="w">      </span><span class="c1"># 統合モニター</span>
-<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>python<span class="w"> </span>run.py<span class="w">          </span><span class="c1"># 走行（手動/自動）</span>
-<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>python<span class="w"> </span>train_pytorch.py<span class="w"> </span><span class="c1"># 学習</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>python<span class="w"> </span>motor.py<span class="w">        </span><span class="c1"># モーター調整</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>python<span class="w"> </span>ultrasonic.py<span class="w">   </span><span class="c1"># 超音波センサー確認</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>python<span class="w"> </span>lidar.py<span class="w">        </span><span class="c1"># LiDAR確認</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>python<span class="w"> </span>monitor.py<span class="w">      </span><span class="c1"># 統合モニター</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>python<span class="w"> </span>run.py<span class="w">          </span><span class="c1"># 走行（手動/自動）</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>python<span class="w"> </span>train_pytorch.py<span class="w"> </span><span class="c1"># 学習</span>
 </code></pre></div>
 <h3 id="_28">コントローラーボタン早見表</h3>
 <table>
@@ -3174,7 +3163,7 @@
 </tbody>
 </table>
 <h3 id="_29">改善サイクル</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>データ収集 → 分析 → 学習 → 自動走行 → 評価 → （繰り返し）
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>データ収集 → 分析 → データクレンジング → 学習 → 自動走行 → 評価 → （繰り返し）
 </code></pre></div>
 
 
