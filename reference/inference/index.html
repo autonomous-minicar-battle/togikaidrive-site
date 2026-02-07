@@ -1497,7 +1497,7 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        変換手順
+        変換方式
       
     </span>
   </a>
@@ -1508,10 +1508,38 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        変換オプション
+        変換方法
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="変換方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方法1: 学習後の自動提案
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方法2: 変換ツールで手動実行
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1527,10 +1555,21 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#orin-nano-super-fp16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ベンチマーク結果（Orin Nano Super / FP16）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ベンチマーク結果（参考）
+        前提条件
       
     </span>
   </a>
@@ -1666,10 +1705,32 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#tensorrt_1" class="md-nav__link">
+  <a href="#tensorrt-trtexec" class="md-nav__link">
     <span class="md-ellipsis">
       
-        TensorRT変換エラー
+        TensorRT: trtexecが見つからない
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tensorrt-gpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TensorRT: GPUメモリ不足
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tensorrt-torch2trt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TensorRT: torch2trtでの変換失敗
       
     </span>
   </a>
@@ -1906,7 +1967,7 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        変換手順
+        変換方式
       
     </span>
   </a>
@@ -1917,10 +1978,38 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        変換オプション
+        変換方法
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="変換方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方法1: 学習後の自動提案
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方法2: 変換ツールで手動実行
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1936,10 +2025,21 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#orin-nano-super-fp16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ベンチマーク結果（Orin Nano Super / FP16）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ベンチマーク結果（参考）
+        前提条件
       
     </span>
   </a>
@@ -2075,10 +2175,32 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#tensorrt_1" class="md-nav__link">
+  <a href="#tensorrt-trtexec" class="md-nav__link">
     <span class="md-ellipsis">
       
-        TensorRT変換エラー
+        TensorRT: trtexecが見つからない
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tensorrt-gpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TensorRT: GPUメモリ不足
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tensorrt-torch2trt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TensorRT: torch2trtでの変換失敗
       
     </span>
   </a>
@@ -2175,22 +2297,39 @@
 </code></pre></div>
 <hr />
 <h2 id="tensorrtjetson">TensorRT（Jetson向け）</h2>
-<h3 id="_2">変換手順</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 学習後に自動で提案される、または手動で実行</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>python<span class="w"> </span>convert_tensorrt.py<span class="w"> </span>--model<span class="w"> </span>models/my_model.pth
+<h3 id="_2">変換方式</h3>
+<p>ONNX経由でtrtexecを使用して変換します（torch2trtは複雑なモデルに非対応のため）。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>PyTorch (.pth) → ONNX (.onnx) → TensorRT (.trt)
 </code></pre></div>
-<h3 id="_3">変換オプション</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># config.py</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">TENSORRT_FP16</span> <span class="o">=</span> <span class="kc">True</span>         <span class="c1"># FP16精度（高速化）</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">TENSORRT_BATCH_SIZE</span> <span class="o">=</span> <span class="mi">1</span>      <span class="c1"># バッチサイズ</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">TENSORRT_WORKSPACE</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">30</span> <span class="c1"># ワークスペースサイズ(1GB)</span>
+<h3 id="_3">変換方法</h3>
+<h4 id="1">方法1: 学習後の自動提案</h4>
+<p><code>python train_pytorch.py</code> で学習完了後、Jetsonデバイスが検出されると自動的にTensorRT変換が提案されます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>🚀 学習完了！モデル変換オプション
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>検出されたプラットフォーム: Jetson Orin Nano
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>💡 Jetsonデバイスが検出されました
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>TensorRT形式に変換しますか？ (Y/n): y
+</code></pre></div>
+<h4 id="2">方法2: 変換ツールで手動実行</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>python<span class="w"> </span>tools/onnx_trt_converter.py
+</code></pre></div>
+<p>対話形式でモデルを選択し変換できます。オプション指定も可能です:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 直接指定</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>python<span class="w"> </span>tools/onnx_trt_converter.py<span class="w"> </span>--model<span class="w"> </span>models/edgenext_xx_small_20260208.pth
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># FP32で変換（精度優先）</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>python<span class="w"> </span>tools/onnx_trt_converter.py<span class="w"> </span>--fp32
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># 中間ONNXファイルを保持</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>python<span class="w"> </span>tools/onnx_trt_converter.py<span class="w"> </span>--keep-onnx
 </code></pre></div>
 <h3 id="_4">出力ファイル</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>models/
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>├── my_model.pth           # 元のPyTorchモデル
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>└── my_model_trt.engine    # TensorRTエンジン
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>models/
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>├── edgenext_xx_small_20260208.pth   # 元のPyTorchモデル
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>└── edgenext_xx_small_20260208.trt   # TensorRTエンジン
 </code></pre></div>
-<h3 id="_5">ベンチマーク結果（参考）</h3>
+<p>中間のONNXファイルはデフォルトで自動削除されます。</p>
+<h3 id="orin-nano-super-fp16">ベンチマーク結果（Orin Nano Super / FP16）</h3>
 <table>
 <thead>
 <tr>
@@ -2203,46 +2342,52 @@
 <tbody>
 <tr>
 <td>donkeycar</td>
-<td>15ms</td>
-<td>3ms</td>
-<td>5x</td>
+<td>1.65ms</td>
+<td>1.31ms</td>
+<td>1.26x</td>
 </tr>
 <tr>
 <td>resnet18</td>
-<td>45ms</td>
-<td>8ms</td>
-<td>5.6x</td>
+<td>10.4ms</td>
+<td>4.89ms</td>
+<td>2.12x</td>
 </tr>
 <tr>
 <td>mobilevit_xxs</td>
-<td>25ms</td>
-<td>5ms</td>
-<td>5x</td>
+<td>29.1ms</td>
+<td>7.43ms</td>
+<td>3.92x</td>
+</tr>
+<tr>
+<td>edgenext_xx_small</td>
+<td>22.8ms</td>
+<td>4.42ms</td>
+<td>5.15x</td>
 </tr>
 </tbody>
 </table>
+<h3 id="_5">前提条件</h3>
+<ul>
+<li><strong>trtexec</strong>: <code>sudo apt install libnvinfer-bin</code> でインストール</li>
+<li>JetPack SDK に含まれる TensorRT ランタイム</li>
+</ul>
 <hr />
 <h2 id="openvinoraspberry-pi">OpenVINO（Raspberry Pi向け）</h2>
 <h3 id="_6">インストール</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>pip<span class="w"> </span>install<span class="w"> </span>openvino-dev
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>pip<span class="w"> </span>install<span class="w"> </span>openvino-dev
 </code></pre></div>
 <h3 id="_7">変換手順</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># ONNX経由で変換</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>python<span class="w"> </span>convert_openvino.py<span class="w"> </span>--model<span class="w"> </span>models/my_model.pth
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># ONNX経由で変換</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>python<span class="w"> </span>convert_openvino.py<span class="w"> </span>--model<span class="w"> </span>models/my_model.pth
 </code></pre></div>
 <h3 id="_8">変換の流れ</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>PyTorch (.pth)
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    ↓
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>ONNX (.onnx)
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    ↓
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>OpenVINO IR (.xml + .bin)
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>PyTorch (.pth) → ONNX (.onnx) → OpenVINO IR (.xml + .bin)
 </code></pre></div>
 <h3 id="_9">出力ファイル</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>models/
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>├── my_model.pth           # 元のPyTorchモデル
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>├── my_model.onnx          # ONNX中間形式
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>├── my_model.xml           # OpenVINOモデル定義
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>└── my_model.bin           # OpenVINO重み
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>models/
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>├── my_model.pth           # 元のPyTorchモデル
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>├── my_model.xml           # OpenVINOモデル定義
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>└── my_model.bin           # OpenVINO重み
 </code></pre></div>
 <h3 id="_10">ベンチマーク結果（参考）</h3>
 <table>
@@ -2272,25 +2417,34 @@
 <hr />
 <h2 id="_11">使用方法</h2>
 <h3 id="tensorrt">TensorRT</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># config.py</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">INFERENCE_ENGINE</span> <span class="o">=</span> <span class="s2">&quot;tensorrt&quot;</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">MODEL_NAME</span> <span class="o">=</span> <span class="s2">&quot;my_model_trt.engine&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># config.py</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">INFERENCE_ENGINE</span> <span class="o">=</span> <span class="s2">&quot;tensorrt&quot;</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">MODEL_NAME</span> <span class="o">=</span> <span class="s2">&quot;edgenext_xx_small_20260208.trt&quot;</span>
 </code></pre></div>
 <h3 id="openvino">OpenVINO</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># config.py</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">INFERENCE_ENGINE</span> <span class="o">=</span> <span class="s2">&quot;openvino&quot;</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">MODEL_NAME</span> <span class="o">=</span> <span class="s2">&quot;my_model.xml&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># config.py</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">INFERENCE_ENGINE</span> <span class="o">=</span> <span class="s2">&quot;openvino&quot;</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">MODEL_NAME</span> <span class="o">=</span> <span class="s2">&quot;my_model.xml&quot;</span>
 </code></pre></div>
 <hr />
 <h2 id="_12">トラブルシューティング</h2>
-<h3 id="tensorrt_1">TensorRT変換エラー</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Error: CUDA out of memory
+<h3 id="tensorrt-trtexec">TensorRT: trtexecが見つからない</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>❌ trtexec が見つかりません
 </code></pre></div>
 <p><strong>対策:</strong>
-- <code>TENSORRT_WORKSPACE</code>を小さくする
-- 他のGPUプロセスを終了する</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>libnvinfer-bin
+</code></pre></div></p>
+<h3 id="tensorrt-gpu">TensorRT: GPUメモリ不足</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>NvMapMemAllocInternalTagged: error 12
+</code></pre></div>
+<p><strong>対策:</strong>
+- 他のGPUプロセス（Jupyter, ブラウザ等）を終了する
+- <code>--fp32</code> で試す（FP16ビルドはメモリを多く使う場合がある）</p>
+<h3 id="tensorrt-torch2trt">TensorRT: torch2trtでの変換失敗</h3>
+<p>EdgeNeXt, MobileViT等の複雑なモデルはtorch2trtで変換できません。
+<code>tools/onnx_trt_converter.py</code> を使用してONNX経由で変換してください。</p>
 <h3 id="openvino_1">OpenVINO変換エラー</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Error: Unsupported operation
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Error: Unsupported operation
 </code></pre></div>
 <p><strong>対策:</strong>
 - PyTorchのバージョンを確認
@@ -2305,14 +2459,14 @@
 <h2 id="_14">推奨フロー</h2>
 <pre class="mermaid"><code>graph TD
     A[PyTorchで学習] --&gt; B{デバイス確認}
-    B --&gt;|Jetson| C[TensorRT変換]
+    B --&gt;|Jetson| C[ONNX経由でTensorRT変換]
     B --&gt;|Raspberry Pi| D[OpenVINO変換]
     C --&gt; E[動作確認]
     D --&gt; E
     E --&gt; F[本番運用]</code></pre>
 <ol>
 <li>まずPyTorchで学習・動作確認</li>
-<li>デバイスに応じて変換</li>
+<li>デバイスに応じて変換（学習後の自動提案 or 手動ツール）</li>
 <li>変換後のモデルで動作確認</li>
 <li>精度が許容範囲内か検証</li>
 <li>本番運用</li>

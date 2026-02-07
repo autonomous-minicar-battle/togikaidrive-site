@@ -3046,7 +3046,7 @@
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>togikaidrive-dev
 </code></pre></div>
 <h3 id="2">2. 仮想環境の作成</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>--system-site-packages<span class="w"> </span>venv
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
 </code></pre></div>
 <h3 id="3">3. 依存パッケージのインストール</h3>
@@ -3084,8 +3084,8 @@
 <a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1"># user home下に作成</span>
 <a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="nb">cd</span><span class="w"> </span>/home/jetson
 <a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="c1"># 仮想環境を作成（Python 3.10を使用）</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>python3.10<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="c1"># 仮想環境を作成（Python 3.10を使用、システムパッケージを参照）</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>python3.10<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>--system-site-packages<span class="w"> </span>venv
 <a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>
 <a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="c1"># 仮想環境を有効化</span>
 <a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
@@ -3095,7 +3095,7 @@
 </code></pre></div>
 <h3 id="_7">依存パッケージのインストール</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># 基本パッケージを一括インストール</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-jetson.txt
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>setup/requirements-jetson.txt
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">requirements-jetson.txtの内容</p>

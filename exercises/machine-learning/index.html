@@ -1194,6 +1194,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#1epochorin-nano-super" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1epochあたりの学習時間の目安（Orin Nano Super）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1239,10 +1250,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#mobilevit_xxs-edgenext_xxsmall" class="md-nav__link">
+  <a href="#mobilevit_xxs-edgenext_xx_small" class="md-nav__link">
     <span class="md-ellipsis">
       
-        mobilevit_xxs / edgenext_xxsmall
+        mobilevit_xxs / edgenext_xx_small
       
     </span>
   </a>
@@ -1392,6 +1403,17 @@
     <span class="md-ellipsis">
       
         ステップ3: モデル設定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-tensorrtjetson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ステップ3.5: TensorRT変換（Jetsonのみ・任意）
       
     </span>
   </a>
@@ -2037,6 +2059,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#1epochorin-nano-super" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1epochあたりの学習時間の目安（Orin Nano Super）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2082,10 +2115,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#mobilevit_xxs-edgenext_xxsmall" class="md-nav__link">
+  <a href="#mobilevit_xxs-edgenext_xx_small" class="md-nav__link">
     <span class="md-ellipsis">
       
-        mobilevit_xxs / edgenext_xxsmall
+        mobilevit_xxs / edgenext_xx_small
       
     </span>
   </a>
@@ -2235,6 +2268,17 @@
     <span class="md-ellipsis">
       
         ステップ3: モデル設定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-tensorrtjetson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ステップ3.5: TensorRT変換（Jetsonのみ・任意）
       
     </span>
   </a>
@@ -2487,7 +2531,7 @@
 <td>★★★☆☆</td>
 </tr>
 <tr>
-<td><strong>edgenext_xxsmall</strong></td>
+<td><strong>edgenext_xx_small</strong></td>
 <td>画像</td>
 <td>エッジ最適化</td>
 <td>中</td>
@@ -2496,6 +2540,34 @@
 </tr>
 </tbody>
 </table>
+<h4 id="1epochorin-nano-super">1epochあたりの学習時間の目安（Orin Nano Super）</h4>
+<table>
+<thead>
+<tr>
+<th>モデル名</th>
+<th>1epochあたり</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>donkeycar</strong></td>
+<td>数秒</td>
+</tr>
+<tr>
+<td><strong>resnet18</strong></td>
+<td>約50秒</td>
+</tr>
+<tr>
+<td><strong>mobilevit_xxs</strong></td>
+<td>約70秒</td>
+</tr>
+<tr>
+<td><strong>edgenext_xx_small</strong></td>
+<td>約120秒</td>
+</tr>
+</tbody>
+</table>
+<p>※ donkeycar以外の画像モデルは事前学習済みの重みを使用するため、3〜5epochで十分な精度が得られます。</p>
 <h3 id="_4">モデル詳細</h3>
 <h4 id="nn">nn（ニューラルネットワーク）</h4>
 <p>超音波センサー/LiDARの距離データから操作を学習。画像を使わないシンプルなモデル。</p>
@@ -2525,11 +2597,11 @@
 <li>⚠️ 学習時間が長い</li>
 <li>⚠️ モデルサイズが大きい</li>
 </ul>
-<h4 id="mobilevit_xxs-edgenext_xxsmall">mobilevit_xxs / edgenext_xxsmall</h4>
-<p>最新のエッジAI向けアーキテクチャ。TensorRT最適化で高速化。</p>
+<h4 id="mobilevit_xxs-edgenext_xx_small">mobilevit_xxs / edgenext_xx_small</h4>
+<p>最新のエッジAI向けアーキテクチャ。ONNX経由のTensorRT変換で高速化。</p>
 <ul>
 <li>✅ コース変化や外乱に強い</li>
-<li>✅ TensorRT最適化で3.9〜5.15倍高速化</li>
+<li>✅ TensorRT変換で3.9〜5.15倍高速化（<code>python tools/onnx_trt_converter.py</code>）</li>
 <li>⚠️ PyTorchのままだと遅い</li>
 </ul>
 <hr />
@@ -2829,11 +2901,11 @@
 </tr>
 <tr>
 <td><strong>高精度を目指す</strong></td>
-<td>resnet18, edgenext_xxsmall</td>
+<td>resnet18, edgenext_xx_small</td>
 </tr>
 <tr>
 <td><strong>Jetson + TensorRT</strong></td>
-<td>edgenext_xxsmall</td>
+<td>edgenext_xx_small</td>
 </tr>
 </tbody>
 </table>
@@ -2855,7 +2927,7 @@
 <td>1.26x</td>
 </tr>
 <tr>
-<td>edgenext_xxsmall</td>
+<td>edgenext_xx_small</td>
 <td>4.42ms</td>
 <td>226</td>
 <td>5.15x</td>
@@ -2971,15 +3043,26 @@
 <a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;model_20240709_record_20240624_023159.csv_epoch_30_uls_RrLH_FrLH_Fr_FrRH_RrRH.pth&quot;</span>
 <a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="n">model_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">model_dir</span><span class="p">,</span> <span class="n">model_name</span><span class="p">)</span>
 </code></pre></div>
+<h3 id="35-tensorrtjetson">ステップ3.5: TensorRT変換（Jetsonのみ・任意）</h3>
+<p>Jetsonで画像モデルを使用する場合、TensorRT変換で推論速度を大幅に向上できます。
+学習完了後に自動で提案されますが、後から手動で実行することもできます:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>python<span class="w"> </span>tools/onnx_trt_converter.py
+</code></pre></div>
+<p>変換後は config.py を変更して使用します:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># config.py</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">INFERENCE_ENGINE</span> <span class="o">=</span> <span class="s2">&quot;tensorrt&quot;</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">MODEL_NAME</span> <span class="o">=</span> <span class="s2">&quot;edgenext_xx_small_20260208.trt&quot;</span>
+</code></pre></div>
+<p>詳細は <a href="../../reference/inference/">TensorRT / OpenVINO 推論</a> を参照してください。</p>
 <h3 id="4">ステップ4: 学習したモデルで自動走行</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>python<span class="w"> </span>run.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>python<span class="w"> </span>run.py
 </code></pre></div>
 <hr />
 <h2 id="_8">カメラデータのアノテーションと学習</h2>
 <p>カメラを使った画像認識モデルの学習には、以下の手順を推奨します：</p>
 <h3 id="1_1">1. データ収集</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># config.py</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">SAVE_FORMAT</span> <span class="o">=</span> <span class="s2">&quot;donkeycar&quot;</span>  <span class="c1"># Donkeycarフォーマットで保存</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># config.py</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">SAVE_FORMAT</span> <span class="o">=</span> <span class="s2">&quot;donkeycar&quot;</span>  <span class="c1"># Donkeycarフォーマットで保存</span>
 </code></pre></div>
 <h3 id="2_1">2. データ分析・学習ツール</h3>
 <h4 id="annotation_training_d2j">annotation_training_d2j</h4>
