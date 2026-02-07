@@ -861,6 +861,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="対応機種">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ydlidar-t-mini-uart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        YDLIDAR T-mini UART接続
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -2157,6 +2174,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="対応機種">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ydlidar-t-mini-uart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        YDLIDAR T-mini UART接続
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -2543,7 +2577,8 @@
 <p>LiDARセンサの動作確認を行います。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>python<span class="w"> </span>lidar.py
 </code></pre></div>
-<p>ブラウザで <code>http://localhost:8080</code> にアクセスすると、リアルタイムでLiDARの点群データを確認できます。</p>
+<p>ブラウザで <code>http://localhost:8080</code> にアクセスすると、LiDARビジュアライザーが表示されます。点群データやゾーン分割がリアルタイムで可視化されるので、センサーの取り付け向きや検出範囲が正しいか確認してください。</p>
+<p><img alt="LiDARビジュアライザー" src="../../assets/images/lidar_vis.png" /></p>
 <h3 id="_10">対応機種</h3>
 <table>
 <thead>
@@ -2569,6 +2604,47 @@
 </tr>
 </tbody>
 </table>
+<h4 id="ydlidar-t-mini-uart">YDLIDAR T-mini UART接続</h4>
+<p>YDLIDAR T-miniをRaspberry PiにUART接続する場合のピンアサインです。</p>
+<div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+  <img src="../assets/images/ydlidartmini_uart.png" alt="YDLIDAR T-mini ピンアサイン" style="max-height: 280px;">
+  <img src="../assets/images/ydlidartmini_uart_connection.png" alt="YDLIDAR T-mini 接続表" style="max-height: 280px;">
+</div>
+
+<table>
+<thead>
+<tr>
+<th>YDLIDAR TMINI</th>
+<th>Raspberry Pi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TX</td>
+<td>GPIO15 (RXD)</td>
+</tr>
+<tr>
+<td>RX</td>
+<td>GPIO14 (TXD)</td>
+</tr>
+<tr>
+<td>VCC</td>
+<td>5V</td>
+</tr>
+<tr>
+<td>GND</td>
+<td>GND</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">UART設定</p>
+<p>Raspberry PiでUART接続するには、事前にUARTの有効化が必要です。<a href="../../setup/">セットアップ手順</a> の「UART有効化（LiDAR使用時）」を参照してください。</p>
+</div>
+<blockquote>
+<p>出典: YDLIDAR T-mini Plus Data Sheet, &copy; 2023 EAI
+<a href="https://d1c6gk3tn6ydje.cloudfront.net/2036899223840006144/161db662c9e5a765435dfe03c4cd708e.pdf">https://d1c6gk3tn6ydje.cloudfront.net/2036899223840006144/161db662c9e5a765435dfe03c4cd708e.pdf</a></p>
+</blockquote>
 <h3 id="_11">ゾーン分割</h3>
 <p>LiDARの点群データは超音波センサーと同じ5つのゾーンに分割して使用できます。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>             FrFR 前方
