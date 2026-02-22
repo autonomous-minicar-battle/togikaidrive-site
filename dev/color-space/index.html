@@ -1616,6 +1616,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#picamera2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        picamera2のフォーマット名に関する注意
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1819,6 +1830,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#picamera2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        picamera2のフォーマット名に関する注意
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1922,6 +1944,12 @@
 <td>カメラからの取得もBGR</td>
 </tr>
 <tr>
+<td><strong>picamera2</strong></td>
+<td><code>capture_array()</code></td>
+<td><strong>※下記参照</strong></td>
+<td>フォーマット名と実際のチャンネル順が逆</td>
+</tr>
+<tr>
 <td><strong>PIL/Pillow</strong></td>
 <td><code>Image.open()</code></td>
 <td><strong>RGB</strong></td>
@@ -1972,28 +2000,63 @@
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">image_rgb</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_frame</span><span class="p">()</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">image_rgb</span><span class="p">)</span>
 </code></pre></div>
+<h2 id="picamera2">picamera2のフォーマット名に関する注意</h2>
+<p>picamera2（libcamera）のフォーマット名は、OpenCVなど一般的なライブラリとチャンネル順序の命名が<strong>逆</strong>です。</p>
+<table>
+<thead>
+<tr>
+<th>picamera2フォーマット名</th>
+<th>実際のチャンネル順</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RGB888</code></td>
+<td><strong>BGR</strong></td>
+<td>OpenCVでそのまま使う場合</td>
+</tr>
+<tr>
+<td><code>BGR888</code></td>
+<td><strong>RGB</strong></td>
+<td>RGB形式で取得したい場合</td>
+</tr>
+</tbody>
+</table>
+<p>本プロジェクトではすべてRGB統一のため、picamera2では<code>BGR888</code>を指定しています。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># ✅ 正しい：BGR888を指定するとRGB順で取得できる</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">picamera_config</span> <span class="o">=</span> <span class="n">picam2</span><span class="o">.</span><span class="n">create_preview_configuration</span><span class="p">(</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">main</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;BGR888&quot;</span><span class="p">,</span> <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)},</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="p">)</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1"># ❌ 間違い：RGB888は実際にはBGR順になる</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="n">picamera_config</span> <span class="o">=</span> <span class="n">picam2</span><span class="o">.</span><span class="n">create_preview_configuration</span><span class="p">(</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="n">main</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;RGB888&quot;</span><span class="p">,</span> <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)},</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="p">)</span>
+</code></pre></div>
+<p>参考: <a href="https://github.com/raspberrypi/picamera2/issues/848">picamera2 Issue #848 - RGB Colorspaces and OpenCV</a></p>
 <h2 id="_4">よくある問題</h2>
 <h3 id="1">問題1: 学習と推論で色が違う</h3>
 <p><strong>症状:</strong> 学習時は正常だが、推論時に色がおかしい</p>
 <p><strong>原因:</strong> 学習データはPIL(RGB)、推論時はOpenCV(BGR)で読み込んでいる</p>
 <p><strong>解決:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 推論時もRGBに変換</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">frame_rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame_bgr</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># 推論時もRGBに変換</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">frame_rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame_bgr</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
 </code></pre></div></p>
 <h3 id="2">問題2: 画像保存時に色が変わる</h3>
 <p><strong>症状:</strong> OpenCVで保存した画像の色がおかしい</p>
 <p><strong>原因:</strong> RGB画像をそのままcv2.imwrite()で保存</p>
 <p><strong>解決:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># RGB→BGRに戻してから保存</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">image_bgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image_rgb</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2BGR</span><span class="p">)</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s1">&#39;output.jpg&#39;</span><span class="p">,</span> <span class="n">image_bgr</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># RGB→BGRに戻してから保存</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">image_bgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image_rgb</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2BGR</span><span class="p">)</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s1">&#39;output.jpg&#39;</span><span class="p">,</span> <span class="n">image_bgr</span><span class="p">)</span>
 </code></pre></div></p>
 <h3 id="3-matplotlib">問題3: matplotlibで表示がおかしい</h3>
 <p><strong>症状:</strong> OpenCVで読んだ画像をmatplotlibで表示すると色がおかしい</p>
 <p><strong>原因:</strong> BGR画像をRGBとして表示</p>
 <p><strong>解決:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">image_rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image_bgr</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image_rgb</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">image_rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image_bgr</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image_rgb</span><span class="p">)</span>
 </code></pre></div></p>
 <h2 id="_5">チェックリスト</h2>
 <p>開発時は以下を確認してください：</p>
