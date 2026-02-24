@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
     
     
       
@@ -2520,10 +2520,23 @@
 <a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="n">HAVE_LIDAR</span> <span class="o">=</span> <span class="kc">True</span>
 <a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="n">ACTIVE_SENSORS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;lidar&quot;</span><span class="p">,</span> <span class="s2">&quot;camera_0&quot;</span><span class="p">]</span>
 <a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>
-<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="c1"># FTGパラメータ</span>
-<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="n">FTG_LOOK_AHEAD</span> <span class="o">=</span> <span class="mf">0.5</span>      <span class="c1"># Look-ahead距離 (m)</span>
-<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="n">FTG_CAR_WIDTH</span> <span class="o">=</span> <span class="mf">0.2</span>       <span class="c1"># 車幅 (m)</span>
-<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="n">FTG_MAX_SPEED</span> <span class="o">=</span> <span class="mf">0.4</span>       <span class="c1"># 最大速度</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="c1"># FTG基本パラメータ</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="n">FTG_SAFETY_DISTANCE</span> <span class="o">=</span> <span class="mi">300</span>       <span class="c1"># 安全距離 (mm)</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="n">FTG_MAX_DISTANCE</span> <span class="o">=</span> <span class="mi">3000</span>         <span class="c1"># 最大検出距離 (mm)</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="c1"># ステアリング制御方式: &quot;linear&quot;, &quot;pid&quot;, &quot;pure_pursuit&quot;</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="n">FTG_STEERING_METHOD</span> <span class="o">=</span> <span class="s2">&quot;linear&quot;</span>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="n">FTG_STEERING_GAIN</span> <span class="o">=</span> <span class="mf">1.0</span>         <span class="c1"># ステアリングゲイン（全方式共通）</span>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="n">FTG_SMOOTHING_FACTOR</span> <span class="o">=</span> <span class="mf">0.3</span>      <span class="c1"># EMAスムージング係数（全方式共通）</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="c1"># PID制御パラメータ（FTG_STEERING_METHOD = &quot;pid&quot; 時に使用）</span>
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="n">FTG_PID_KP</span> <span class="o">=</span> <span class="mf">0.8</span>
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="n">FTG_PID_KI</span> <span class="o">=</span> <span class="mf">0.0</span>
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="n">FTG_PID_KD</span> <span class="o">=</span> <span class="mf">0.1</span>
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>
+<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a><span class="c1"># Pure Pursuit パラメータ（FTG_STEERING_METHOD = &quot;pure_pursuit&quot; 時に使用）</span>
+<a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a><span class="n">FTG_WHEELBASE</span> <span class="o">=</span> <span class="mi">300</span>              <span class="c1"># ホイールベース (mm)</span>
+<a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="n">FTG_LOOKAHEAD_DISTANCE</span> <span class="o">=</span> <span class="mi">500</span>     <span class="c1"># ルックアヘッド距離 (mm)</span>
 </code></pre></div>
 <h3 id="plannerpy">planner.pyへの組み込み</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">follow_the_gap</span><span class="w"> </span><span class="kn">import</span> <span class="n">FollowTheGap</span>
@@ -2554,24 +2567,49 @@
 </thead>
 <tbody>
 <tr>
-<td><code>look_ahead</code></td>
-<td>0.3〜0.8m</td>
-<td>大きいほど滑らか、小さいほど反応が速い</td>
+<td><code>FTG_STEERING_METHOD</code></td>
+<td>"linear" / "pid" / "pure_pursuit"</td>
+<td>ステアリング制御方式の選択</td>
 </tr>
 <tr>
-<td><code>car_width</code></td>
-<td>実車幅×1.2</td>
-<td>安全マージン</td>
+<td><code>FTG_STEERING_GAIN</code></td>
+<td>0.5〜2.0</td>
+<td>ステアリングの感度（全方式共通）</td>
 </tr>
 <tr>
-<td><code>disparity_threshold</code></td>
-<td>0.3〜0.5m</td>
-<td>大きいほど保守的</td>
+<td><code>FTG_SMOOTHING_FACTOR</code></td>
+<td>0.1〜0.5</td>
+<td>EMAスムージング（0=滑らか、1=即応答）</td>
 </tr>
 <tr>
-<td><code>max_steering</code></td>
-<td>0.5〜0.8</td>
-<td>急カーブ対応</td>
+<td><code>FTG_PID_KP</code></td>
+<td>0.5〜1.5</td>
+<td>PID比例ゲイン（応答速度）</td>
+</tr>
+<tr>
+<td><code>FTG_PID_KI</code></td>
+<td>0.0〜0.1</td>
+<td>PID積分ゲイン（定常偏差除去）</td>
+</tr>
+<tr>
+<td><code>FTG_PID_KD</code></td>
+<td>0.05〜0.3</td>
+<td>PID微分ゲイン（振動抑制）</td>
+</tr>
+<tr>
+<td><code>FTG_LOOKAHEAD_DISTANCE</code></td>
+<td>300〜800mm</td>
+<td>Pure Pursuit ルックアヘッド距離（大きいほど滑らか）</td>
+</tr>
+<tr>
+<td><code>FTG_BUBBLE_RADIUS</code></td>
+<td>100〜200mm</td>
+<td>安全バブル半径（車幅の半分程度）</td>
+</tr>
+<tr>
+<td><code>FTG_DISPARITY_THRESHOLD</code></td>
+<td>150〜300mm</td>
+<td>距離差閾値（大きいほど保守的）</td>
 </tr>
 </tbody>
 </table>
