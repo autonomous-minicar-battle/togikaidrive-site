@@ -1236,56 +1236,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="ROS2のインストール（オプション）">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. セットアップ
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. インストール
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. 環境変数設定
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. 動作テスト
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -2033,6 +1983,34 @@
     
   
      Follow the Gap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced/ros2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+     ROS2対応
   
 
     
@@ -2997,56 +2975,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="ROS2のインストール（オプション）">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. セットアップ
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. インストール
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. 環境変数設定
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. 動作テスト
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -3619,43 +3547,13 @@ Raspberry PiではデフォルトでシリアルポートがBluetoothに割り�
 </table>
 <hr />
 <h2 id="ros2">ROS2のインストール（オプション）</h2>
-<p>ROS2を使用する場合のインストール手順です。</p>
-<h3 id="1_2">1. セットアップ</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="c1"># 必要なパッケージをインストール</span>
-<a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>software-properties-common
-<a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a>sudo<span class="w"> </span>add-apt-repository<span class="w"> </span>universe
-<a id="__codelineno-50-4" name="__codelineno-50-4" href="#__codelineno-50-4"></a>
-<a id="__codelineno-50-5" name="__codelineno-50-5" href="#__codelineno-50-5"></a><span class="c1"># ROSリポジトリを追加</span>
-<a id="__codelineno-50-6" name="__codelineno-50-6" href="#__codelineno-50-6"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>curl<span class="w"> </span>-y
-<a id="__codelineno-50-7" name="__codelineno-50-7" href="#__codelineno-50-7"></a>sudo<span class="w"> </span>curl<span class="w"> </span>-sSL<span class="w"> </span>https://raw.githubusercontent.com/ros/rosdistro/master/ros.key<span class="w"> </span>-o<span class="w"> </span>/usr/share/keyrings/ros-archive-keyring.gpg
-<a id="__codelineno-50-8" name="__codelineno-50-8" href="#__codelineno-50-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;deb [arch=</span><span class="k">$(</span>dpkg<span class="w"> </span>--print-architecture<span class="k">)</span><span class="s2"> signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu </span><span class="k">$(</span>.<span class="w"> </span>/etc/os-release<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$UBUNTU_CODENAME</span><span class="k">)</span><span class="s2"> main&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/ros2.list<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
-<a id="__codelineno-50-9" name="__codelineno-50-9" href="#__codelineno-50-9"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>upgrade
-</code></pre></div>
-<h3 id="2_4">2. インストール</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="c1"># ROS2 Humbleをインストール</span>
-<a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-humble-desktop<span class="w"> </span>ros-dev-tools
-</code></pre></div>
-<h3 id="3_2">3. 環境変数設定</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="c1"># bashrcに追加して自動で読み込まれるようにする</span>
-<a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;source /opt/ros/humble/setup.bash&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
-<a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a><span class="nb">source</span><span class="w"> </span>~/.bashrc
-</code></pre></div>
-<h3 id="4_2">4. 動作テスト</h3>
-<p>別々のターミナルで以下を実行して、通信を確認します：</p>
-<p><strong>ターミナル1: Talkerを実行</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_cpp<span class="w"> </span>talker
-</code></pre></div></p>
-<p><strong>ターミナル2: Listenerを実行</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_py<span class="w"> </span>listener
-</code></pre></div></p>
-<p>Listenerが「I heard: [Hello World: X]」のようなメッセージを受信できれば成功です。</p>
+<p>ROS2のインストール・セットアップ手順は <a href="../advanced/ros2/#ros2_1">ROS2対応</a> ページを参照してください。</p>
 <hr />
 <h2 id="_15">参考リンク</h2>
 <ul>
 <li><a href="https://forums.developer.nvidia.com/t/pytorch-for-jetson">PyTorch for Jetson</a></li>
 <li><a href="https://developer.nvidia.com/embedded/jetpack">JetPack SDK</a></li>
 <li><a href="https://github.com/NVIDIA/jetson-gpio">Jetson.GPIO</a></li>
-<li><a href="https://docs.ros.org/en/humble/index.html">ROS2 Documentation</a></li>
 <li><a href="https://github.com/YDLIDAR/YDLidar-SDK">YDLidar SDK</a></li>
 </ul>
 <hr />
@@ -3718,6 +3616,8 @@ Raspberry PiではデフォルトでシリアルポートがBluetoothに割り�
     
     
       <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

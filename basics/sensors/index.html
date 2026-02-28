@@ -1764,6 +1764,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/ros2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+     ROS2対応
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2607,13 +2635,33 @@
 <h4 id="ydlidar-t-mini-uart">YDLIDAR T-mini UART接続</h4>
 <p>YDLIDAR T-miniをUART接続する場合のピンアサインです。</p>
 <p><img alt="YDLIDAR T-mini ピンアサイン" src="../../assets/images/ydlidartmini_uart.png" style="max-height: 280px; display: inline-block;" /></p>
-<p>YDLIDAR T-mini 接続表
-| YDLIDAR TMINI | Raspberry Pi/Jetson Orin Nano |
-|---------------|-------------|
-| TX | GPIO15 (RXD) |
-| RX | GPIO14 (TXD) |
-| VCC | 5V |
-| GND | GND |</p>
+<p><strong>YDLIDAR T-mini 接続表</strong></p>
+<table>
+<thead>
+<tr>
+<th>YDLIDAR TMINI</th>
+<th>Raspberry Pi/Jetson Orin Nano</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TX</td>
+<td>GPIO15 (RXD)</td>
+</tr>
+<tr>
+<td>RX</td>
+<td>GPIO14 (TXD)</td>
+</tr>
+<tr>
+<td>VCC</td>
+<td>5V</td>
+</tr>
+<tr>
+<td>GND</td>
+<td>GND</td>
+</tr>
+</tbody>
+</table>
 <div class="admonition note">
 <p class="admonition-title">UART設定</p>
 <p>UART接続にはデバイスごとに事前設定が必要です。<a href="../../setup/">セットアップ手順</a> の「UART有効化（LiDAR使用時）」を参照してください。</p>
@@ -3084,6 +3132,8 @@
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>
