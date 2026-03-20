@@ -409,7 +409,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../reference/data-format.md" class="md-tabs__link">
+        <a href="../reference/inference/" class="md-tabs__link">
           
   
   
@@ -1899,34 +1899,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/data-format.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-     データフォーマット
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../reference/inference/" class="md-nav__link">
         
   
@@ -2694,44 +2666,27 @@
 <h3 id="_7">コントローラー操作</h3>
 <p><img alt="コントローラー" src="../assets/images/controller.png" /></p>
 <p>Logicool F710などを利用</p>
-<table>
-<thead>
-<tr>
-<th>操作</th>
-<th>ボタン/スティック</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ステアリング</td>
-<td>左スティック（左右）</td>
-</tr>
-<tr>
-<td>スロットル</td>
-<td>右スティック（上下）</td>
-</tr>
-<tr>
-<td>一定速度1（直線用）</td>
-<td>Xボタン</td>
-</tr>
-<tr>
-<td>一定速度2（カーブ用）</td>
-<td>Bボタン</td>
-</tr>
-<tr>
-<td>ブレーキ</td>
-<td>Aボタン</td>
-</tr>
-<tr>
-<td><strong>記録開始/停止</strong></td>
-<td><strong>Yボタン</strong></td>
-</tr>
-<tr>
-<td><strong>モード切替</strong></td>
-<td><strong>Sボタン</strong></td>
-</tr>
-</tbody>
-</table>
+<div style="display: grid; grid-template-columns: auto 1fr; gap: 1.5em; font-size: 0.82em; margin: 1em 0;">
+<div>
+<b>スティック</b><br>
+左（左右）：ステアリング<br>
+右（上下）：スロットル
+<br><br>
+<b>設定</b><br>
+MODEボタン：光っていない状態<br>
+背面スイッチ：X<br>
+Sボタン：モード切替
+</div>
+<div style="text-align: center;">
+<b>ボタン</b>
+<div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; max-width: 280px; margin: 0.3em auto;">
+<div></div><div style="border: 1px solid #ccc; padding: 0.3em 0.5em; border-radius: 4px;"><b>Y</b> 記録</div><div></div>
+<div style="border: 1px solid #ccc; padding: 0.3em 0.5em; border-radius: 4px;"><b>X</b> 速度1</div><div></div><div style="border: 1px solid #ccc; padding: 0.3em 0.5em; border-radius: 4px;"><b>B</b> 速度2</div>
+<div></div><div style="border: 1px solid #ccc; padding: 0.3em 0.5em; border-radius: 4px;"><b>A</b> ブレーキ</div><div></div>
+</div>
+</div>
+</div>
+
 <h3 id="_8">記録手順</h3>
 <ol>
 <li><strong>Yボタン</strong> → 記録開始</li>
@@ -2800,7 +2755,7 @@
 </ul>
 <div class="admonition info">
 <p class="admonition-title">詳細</p>
-<p>data_viewerについては <strong><a href="../projects/">関連プロジェクト</a></strong> 、データ形式については <strong><a href="reference/data-format.md">データフォーマット</a></strong> を参照してください。</p>
+<p>data_viewerについては <strong><a href="../projects/">関連プロジェクト</a></strong> を参照してください。</p>
 </div>
 <hr />
 <h2 id="5">5. 学習</h2>
