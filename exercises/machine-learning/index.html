@@ -1555,6 +1555,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#gpujetson-orin-nano" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GPUメモリ不足（Jetson Orin Nano等）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1570,17 +1581,6 @@
     <span class="md-ellipsis">
       
         推論時に異常動作
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#gpu" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GPUメモリ不足
       
     </span>
   </a>
@@ -2420,6 +2420,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#gpujetson-orin-nano" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GPUメモリ不足（Jetson Orin Nano等）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2435,17 +2446,6 @@
     <span class="md-ellipsis">
       
         推論時に異常動作
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#gpu" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GPUメモリ不足
       
     </span>
   </a>
@@ -2601,7 +2601,7 @@
 <p>最新のエッジAI向けアーキテクチャ。ONNX経由のTensorRT変換で高速化。</p>
 <ul>
 <li>✅ コース変化や外乱に強い</li>
-<li>✅ TensorRT変換で3.9〜5.15倍高速化（<code>python tools/onnx_trt_converter.py</code>）</li>
+<li>✅ TensorRT変換で3.9〜5.15倍高速化（<code>python tools/torch2trt_converter.py</code>）</li>
 <li>⚠️ PyTorchのままだと遅い</li>
 </ul>
 <hr />
@@ -2948,24 +2948,19 @@
 </table>
 <hr />
 <h2 id="configpy">機械学習関連のconfig.py設定</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># NNパラメータ</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">HAVE_NN</span> <span class="o">=</span> <span class="kc">True</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1">## 学習済みモデルのパス</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">model_dir</span> <span class="o">=</span> <span class="s2">&quot;models&quot;</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;model_20240709_record_20240624_023159.csv_epoch_30_uls_RrLH_FrLH_Fr_FrRH_RrRH.pth&quot;</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="n">model_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">model_dir</span><span class="p">,</span> <span class="n">model_name</span><span class="p">)</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="c1">## モデルと学習のハイパーパラメータ設定</span>
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="n">hidden_dim</span> <span class="o">=</span> <span class="mi">64</span>       <span class="c1"># 隠れ層のノード数</span>
-<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="n">num_hidden_layers</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1"># 隠れ層の数</span>
-<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">8</span>
-<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>
-<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="c1"># 推論エンジン（学習時はpytorch、推論時に変更可能）</span>
-<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="n">INFERENCE_ENGINE</span> <span class="o">=</span> <span class="s2">&quot;pytorch&quot;</span>  <span class="c1"># &quot;tensorrt&quot;, &quot;openvino&quot;</span>
-<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>
-<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="c1"># 超音波センサー正規化</span>
-<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="n">NORMALIZE_RANGE</span> <span class="o">=</span> <span class="mi">2000</span>  <span class="c1"># 2000mm → 1.0</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># モデルのパス</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># 推論エンジンは拡張子から自動判定: .pth→PyTorch, .engine→TensorRT, .xml→OpenVINO</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">MODEL_DIR</span> <span class="o">=</span> <span class="s2">&quot;models&quot;</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">MODEL_NAME</span> <span class="o">=</span> <span class="s2">&quot;donkeycar_20260310.pth&quot;</span>       <span class="c1"># PyTorchで推論</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1"># MODEL_NAME = &quot;donkeycar_20260310.engine&quot;  # TensorRTで推論（Jetson高速化）</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c1">## モデルと学習のハイパーパラメータ設定</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="n">HIDDEN_DIM</span> <span class="o">=</span> <span class="mi">64</span>           <span class="c1"># 隠れ層のノード数</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="n">NUM_HIDDEN_LAYERS</span> <span class="o">=</span> <span class="mi">3</span>     <span class="c1"># 隠れ層の数</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">8</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="c1"># 超音波センサー正規化</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="n">NORMALIZE_RANGE</span> <span class="o">=</span> <span class="mi">2000</span>  <span class="c1"># 2000mm → 1.0</span>
 </code></pre></div>
 <hr />
 <h2 id="_7">学習手順</h2>
@@ -3046,12 +3041,11 @@
 <h3 id="35-tensorrtjetson">ステップ3.5: TensorRT変換（Jetsonのみ・任意）</h3>
 <p>Jetsonで画像モデルを使用する場合、TensorRT変換で推論速度を大幅に向上できます。
 学習完了後に自動で提案されますが、後から手動で実行することもできます:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>python<span class="w"> </span>tools/onnx_trt_converter.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>python<span class="w"> </span>tools/torch2trt_converter.py
 </code></pre></div>
-<p>変換後は config.py を変更して使用します:</p>
+<p>変換後は config.py の <code>MODEL_NAME</code> を <code>.engine</code> ファイルに変更するだけで使用できます（推論エンジンは拡張子から自動判定されます）:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># config.py</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">INFERENCE_ENGINE</span> <span class="o">=</span> <span class="s2">&quot;tensorrt&quot;</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">MODEL_NAME</span> <span class="o">=</span> <span class="s2">&quot;edgenext_xx_small_20260208.trt&quot;</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">MODEL_NAME</span> <span class="o">=</span> <span class="s2">&quot;edgenext_xx_small_20260208.engine&quot;</span>  <span class="c1"># .pth → .engine に変更するだけ</span>
 </code></pre></div>
 <p>詳細は <a href="../../reference/inference/">TensorRT / OpenVINO 推論</a> を参照してください。</p>
 <h3 id="4">ステップ4: 学習したモデルで自動走行</h3>
@@ -3121,6 +3115,34 @@
 </ol>
 <hr />
 <h2 id="_10">トラブルシューティング</h2>
+<h3 id="gpujetson-orin-nano">GPUメモリ不足（Jetson Orin Nano等）</h3>
+<p>Jetsonデバイスは <strong>CPUとGPUがメモリを共有</strong> しています（Orin Nano: 合計7.6GB）。
+以下のエラーが出る場合はメモリ不足です:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>NvMapMemAllocInternalTagged: 1075072515 error 12
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>NvMapMemHandleAlloc: error 0
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>RuntimeError: NVML_SUCCESS == r INTERNAL ASSERT FAILED
+</code></pre></div>
+<p><strong>原因:</strong> VS Code Remote SSH 接続時、VS Code Server の Node.js プロセスが <strong>約2〜3GB</strong> のメモリを消費します。</p>
+<p><strong>対処法:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># 1. VS Code の Remote SSH 接続を切断してから実行</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="c1">#    （VS Code のウィンドウを閉じるか、リモート接続を切断）</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="c1"># 2. VS Code Server プロセスを停止（約2-3GB解放）</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>pkill<span class="w"> </span>-f<span class="w"> </span>vscode-server
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="c1"># 3. GUIデスクトップを停止（任意、約100MB解放）</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>gdm
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="c1"># 4. SSHターミナルから直接学習を実行</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>python<span class="w"> </span>train_pytorch.py
+</code></pre></div>
+<p><strong>メモリ使用状況の確認:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># リアルタイムでメモリ・GPU使用率を確認</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>sudo<span class="w"> </span>tegrastats
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="c1"># メモリ消費の多いプロセスを確認</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>ps<span class="w"> </span>aux<span class="w"> </span>--sort<span class="o">=</span>-%mem<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-10
+</code></pre></div>
 <h3 id="_11">モデルが学習しない</h3>
 <ul>
 <li>データ量が少なすぎる可能性</li>
@@ -3132,11 +3154,6 @@
 <li>学習データと推論時の環境が異なる可能性</li>
 <li>センサーのキャリブレーションを確認</li>
 <li>モデルが過学習している可能性</li>
-</ul>
-<h3 id="gpu">GPUメモリ不足</h3>
-<ul>
-<li><code>BATCH_SIZE</code>を小さくする</li>
-<li>モデルを軽量なものに変更</li>
 </ul>
 
 
