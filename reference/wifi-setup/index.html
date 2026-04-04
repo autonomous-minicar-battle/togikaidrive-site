@@ -10,13 +10,11 @@
       
       
       
-        <link rel="canonical" href="https://autonomous-minicar-battle.github.io/togikaidrive-site/dev/color-space/">
+        <link rel="canonical" href="https://autonomous-minicar-battle.github.io/togikaidrive-site/reference/wifi-setup/">
       
       
-        <link rel="prev" href="../../reference/camera/">
+        <link rel="prev" href="../../dev/gstreamer/">
       
-      
-        <link rel="next" href="../gstreamer/">
       
       
         
@@ -27,7 +25,7 @@
     
     
       
-        <title>色空間の注意事項 - togikaidrive 講座</title>
+        <title>WiFi設定 - togikaidrive 講座</title>
       
     
     
@@ -78,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#raspberry-pi-networkmanager-wifi" class="md-skip">
           コンテンツにスキップ
         </a>
       
@@ -112,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-               色空間の注意事項
+               WiFi設定
             
           </span>
         </div>
@@ -409,7 +407,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../reference/inference/" class="md-tabs__link">
+        <a href="../inference/" class="md-tabs__link">
           
   
   
@@ -1400,7 +1398,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/inference/" class="md-nav__link">
+      <a href="../inference/" class="md-nav__link">
         
   
   
@@ -1428,7 +1426,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/pwm-mapping/" class="md-nav__link">
+      <a href="../pwm-mapping/" class="md-nav__link">
         
   
   
@@ -1456,7 +1454,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/camera/" class="md-nav__link">
+      <a href="../camera/" class="md-nav__link">
         
   
   
@@ -1464,6 +1462,62 @@
     
   
      カメラ調整
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/color-space/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+     色空間の注意事項
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/gstreamer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+     GStreamer最適化
   
 
     
@@ -1500,7 +1554,7 @@
   <span class="md-ellipsis">
     
   
-     色空間の注意事項
+     WiFi設定
   
 
     
@@ -1518,7 +1572,7 @@
   <span class="md-ellipsis">
     
   
-     色空間の注意事項
+     WiFi設定
   
 
     
@@ -1544,10 +1598,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        各ライブラリの色空間
+        接続設定ファイルの作成
       
     </span>
   </a>
@@ -1555,10 +1609,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rgb" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        統一ルール：すべてRGB形式で処理
+        起動と反映
       
     </span>
   </a>
@@ -1569,57 +1623,7 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        本プロジェクトでの実装
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="本プロジェクトでの実装">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-camerapy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. カメラ取得 (camera.py)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-train_pytorchpy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. 学習データ読み込み (train_pytorch.py)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-plannerpy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. 推論時 (planner.py)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#picamera2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        picamera2のフォーマット名に関する注意
+        複数接続の優先順位
       
     </span>
   </a>
@@ -1630,19 +1634,19 @@
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        よくある問題
+        フォールバック動作
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="よくある問題">
+    <nav class="md-nav" aria-label="フォールバック動作">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        問題1: 学習と推論で色が違う
+        再試行回数の調整
       
     </span>
   </a>
@@ -1650,10 +1654,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
+  <a href="#wifi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        問題2: 画像保存時に色が変わる
+        切断検知の高速化（WiFi省電力の無効化）
       
     </span>
   </a>
@@ -1661,10 +1665,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-matplotlib" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        問題3: matplotlibで表示がおかしい
+        自動接続の無効化（手動接続のみにする場合）
       
     </span>
   </a>
@@ -1677,10 +1681,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        チェックリスト
+        トラブルシュート
       
     </span>
   </a>
@@ -1691,62 +1695,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../gstreamer/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-     GStreamer最適化
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../reference/wifi-setup/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-     WiFi設定
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -1786,10 +1734,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        各ライブラリの色空間
+        接続設定ファイルの作成
       
     </span>
   </a>
@@ -1797,10 +1745,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rgb" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        統一ルール：すべてRGB形式で処理
+        起動と反映
       
     </span>
   </a>
@@ -1811,57 +1759,7 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        本プロジェクトでの実装
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="本プロジェクトでの実装">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-camerapy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. カメラ取得 (camera.py)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-train_pytorchpy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. 学習データ読み込み (train_pytorch.py)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-plannerpy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. 推論時 (planner.py)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#picamera2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        picamera2のフォーマット名に関する注意
+        複数接続の優先順位
       
     </span>
   </a>
@@ -1872,19 +1770,19 @@
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        よくある問題
+        フォールバック動作
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="よくある問題">
+    <nav class="md-nav" aria-label="フォールバック動作">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        問題1: 学習と推論で色が違う
+        再試行回数の調整
       
     </span>
   </a>
@@ -1892,10 +1790,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
+  <a href="#wifi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        問題2: 画像保存時に色が変わる
+        切断検知の高速化（WiFi省電力の無効化）
       
     </span>
   </a>
@@ -1903,10 +1801,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-matplotlib" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        問題3: matplotlibで表示がおかしい
+        自動接続の無効化（手動接続のみにする場合）
       
     </span>
   </a>
@@ -1919,10 +1817,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        チェックリスト
+        トラブルシュート
       
     </span>
   </a>
@@ -1946,155 +1844,74 @@
 
 
 
-<h1 id="_1">画像処理における色空間の注意事項</h1>
-<p>本プロジェクトでは複数のライブラリを使用して画像を扱うため、色空間（RGB/BGR）の違いによる問題が発生する可能性があります。以下の統一ルールに従って開発してください。</p>
-<h2 id="_2">各ライブラリの色空間</h2>
-<table>
-<thead>
-<tr>
-<th>ライブラリ</th>
-<th>読み込み関数</th>
-<th>色空間</th>
-<th>備考</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>OpenCV</strong></td>
-<td><code>cv2.imread()</code></td>
-<td><strong>BGR</strong></td>
-<td>一般的なRGBとは逆</td>
-</tr>
-<tr>
-<td><strong>OpenCV</strong></td>
-<td><code>cv2.VideoCapture.read()</code></td>
-<td><strong>BGR</strong></td>
-<td>カメラからの取得もBGR</td>
-</tr>
-<tr>
-<td><strong>picamera2</strong></td>
-<td><code>capture_array()</code></td>
-<td><strong>※下記参照</strong></td>
-<td>フォーマット名と実際のチャンネル順が逆</td>
-</tr>
-<tr>
-<td><strong>PIL/Pillow</strong></td>
-<td><code>Image.open()</code></td>
-<td><strong>RGB</strong></td>
-<td>標準的なRGB順序</td>
-</tr>
-<tr>
-<td><strong>matplotlib</strong></td>
-<td><code>plt.imread()</code></td>
-<td><strong>RGB</strong></td>
-<td>表示用途</td>
-</tr>
-<tr>
-<td><strong>PyTorch/TensorFlow</strong></td>
-<td>-</td>
-<td><strong>RGB</strong></td>
-<td>学習フレームワークはRGB前提</td>
-</tr>
-</tbody>
-</table>
-<h2 id="rgb">統一ルール：すべてRGB形式で処理</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># ❌ 間違った例：OpenCVで読んでそのまま使用</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">image_bgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;image.jpg&#39;</span><span class="p">)</span>  <span class="c1"># BGR形式</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">image_bgr</span><span class="p">)</span>  <span class="c1"># BGRをRGBと誤認識 → 色がおかしくなる</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># ✅ 正しい例：BGR→RGB変換</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">image_bgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;image.jpg&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">image_rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image_bgr</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">image_rgb</span><span class="p">)</span>  <span class="c1"># RGB形式で処理</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># ✅ 正しい例：PILで読み込み（変換不要）</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">image_rgb</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;image.jpg&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">image_rgb</span><span class="p">))</span>  <span class="c1"># 既にRGB形式</span>
+<h1 id="raspberry-pi-networkmanager-wifi">Raspberry Pi NetworkManager WiFi設定ガイド</h1>
+<h2 id="_1">接続設定ファイルの作成</h2>
+<p><code>/etc/NetworkManager/system-connections/</code> に <code>.nmconnection</code> ファイルを作成する。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">[connection]</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="na">id</span><span class="o">=</span><span class="s">my-wifi</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="na">type</span><span class="o">=</span><span class="s">wifi</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="na">autoconnect</span><span class="o">=</span><span class="s">true</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="na">autoconnect-priority</span><span class="o">=</span><span class="s">100</span><span class="w">    </span><span class="c1"># 数値が大きいほど優先</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">[wifi]</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="na">mode</span><span class="o">=</span><span class="s">infrastructure</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="na">ssid</span><span class="o">=</span><span class="s">SSID名</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">[wifi-security]</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="na">key-mgmt</span><span class="o">=</span><span class="s">wpa-psk</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="na">psk</span><span class="o">=</span><span class="s">パスワード</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="k">[ipv4]</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="na">method</span><span class="o">=</span><span class="s">auto</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="k">[ipv6]</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="na">method</span><span class="o">=</span><span class="s">auto</span>
 </code></pre></div>
-<h2 id="_3">本プロジェクトでの実装</h2>
-<h3 id="1-camerapy">1. カメラ取得 (<code>camera.py</code>)</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Jetsonカメラ：BGR→RGB変換を実装済み</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">frame_bgr</span> <span class="o">=</span> <span class="n">cap</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">frame_rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame_bgr</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">return</span> <span class="n">ret</span><span class="p">,</span> <span class="n">frame_rgb</span>
+<p>固定IPの場合は <code>[ipv4]</code> を以下に変更：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">[ipv4]</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="na">method</span><span class="o">=</span><span class="s">manual</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="na">addresses</span><span class="o">=</span><span class="s">192.168.1.100/24</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="na">gateway</span><span class="o">=</span><span class="s">192.168.1.1</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="na">dns</span><span class="o">=</span><span class="s">8.8.8.8</span><span class="c1">;8.8.4.4;</span>
 </code></pre></div>
-<h3 id="2-train_pytorchpy">2. 学習データ読み込み (<code>train_pytorch.py</code>)</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># PILでRGB読み込み</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">img_path</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;RGB&quot;</span><span class="p">)</span>
+<p>パーミッション設定：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>/etc/NetworkManager/system-connections/my-wifi.nmconnection
 </code></pre></div>
-<h3 id="3-plannerpy">3. 推論時 (<code>planner.py</code>)</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># camera.pyからRGB形式で受け取り、そのまま使用</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">image_rgb</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_frame</span><span class="p">()</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">image_rgb</span><span class="p">)</span>
+<h2 id="_2">起動と反映</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>NetworkManager<span class="w">   </span><span class="c1"># 自動起動の有効化</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>NetworkManager<span class="w">    </span><span class="c1"># 起動</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>sudo<span class="w"> </span>nmcli<span class="w"> </span>connection<span class="w"> </span>reload<span class="w">           </span><span class="c1"># 設定ファイルの再読み込み</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>sudo<span class="w"> </span>nmcli<span class="w"> </span>connection<span class="w"> </span>up<span class="w"> </span>my-wifi<span class="w">       </span><span class="c1"># 接続</span>
 </code></pre></div>
-<h2 id="picamera2">picamera2のフォーマット名に関する注意</h2>
-<p>picamera2（libcamera）のフォーマット名は、OpenCVなど一般的なライブラリとチャンネル順序の命名が<strong>逆</strong>です。</p>
-<table>
-<thead>
-<tr>
-<th>picamera2フォーマット名</th>
-<th>実際のチャンネル順</th>
-<th>用途</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>RGB888</code></td>
-<td><strong>BGR</strong></td>
-<td>OpenCVでそのまま使う場合</td>
-</tr>
-<tr>
-<td><code>BGR888</code></td>
-<td><strong>RGB</strong></td>
-<td>RGB形式で取得したい場合</td>
-</tr>
-</tbody>
-</table>
-<p>本プロジェクトではすべてRGB統一のため、picamera2では<code>BGR888</code>を指定しています。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># ✅ 正しい：BGR888を指定するとRGB順で取得できる</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">picamera_config</span> <span class="o">=</span> <span class="n">picam2</span><span class="o">.</span><span class="n">create_preview_configuration</span><span class="p">(</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">main</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;BGR888&quot;</span><span class="p">,</span> <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)},</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="p">)</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1"># ❌ 間違い：RGB888は実際にはBGR順になる</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="n">picamera_config</span> <span class="o">=</span> <span class="n">picam2</span><span class="o">.</span><span class="n">create_preview_configuration</span><span class="p">(</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="n">main</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;RGB888&quot;</span><span class="p">,</span> <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)},</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="p">)</span>
+<h2 id="_3">複数接続の優先順位</h2>
+<p><code>autoconnect-priority</code> の値で制御する（大きい方が優先）。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sudo<span class="w"> </span>nmcli<span class="w"> </span>connection<span class="w"> </span>modify<span class="w"> </span><span class="s2">&quot;home-wifi&quot;</span><span class="w">       </span>connection.autoconnect-priority<span class="w"> </span><span class="m">100</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>sudo<span class="w"> </span>nmcli<span class="w"> </span>connection<span class="w"> </span>modify<span class="w"> </span><span class="s2">&quot;office-wifi&quot;</span><span class="w">      </span>connection.autoconnect-priority<span class="w"> </span><span class="m">50</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>sudo<span class="w"> </span>nmcli<span class="w"> </span>connection<span class="w"> </span>modify<span class="w"> </span><span class="s2">&quot;mobile-hotspot&quot;</span><span class="w">   </span>connection.autoconnect-priority<span class="w"> </span><span class="m">10</span>
 </code></pre></div>
-<p>参考: <a href="https://github.com/raspberrypi/picamera2/issues/848">picamera2 Issue #848 - RGB Colorspaces and OpenCV</a></p>
-<h2 id="_4">よくある問題</h2>
-<h3 id="1">問題1: 学習と推論で色が違う</h3>
-<p><strong>症状:</strong> 学習時は正常だが、推論時に色がおかしい</p>
-<p><strong>原因:</strong> 学習データはPIL(RGB)、推論時はOpenCV(BGR)で読み込んでいる</p>
-<p><strong>解決:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># 推論時もRGBに変換</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">frame_rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame_bgr</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
-</code></pre></div></p>
-<h3 id="2">問題2: 画像保存時に色が変わる</h3>
-<p><strong>症状:</strong> OpenCVで保存した画像の色がおかしい</p>
-<p><strong>原因:</strong> RGB画像をそのままcv2.imwrite()で保存</p>
-<p><strong>解決:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># RGB→BGRに戻してから保存</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">image_bgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image_rgb</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2BGR</span><span class="p">)</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s1">&#39;output.jpg&#39;</span><span class="p">,</span> <span class="n">image_bgr</span><span class="p">)</span>
-</code></pre></div></p>
-<h3 id="3-matplotlib">問題3: matplotlibで表示がおかしい</h3>
-<p><strong>症状:</strong> OpenCVで読んだ画像をmatplotlibで表示すると色がおかしい</p>
-<p><strong>原因:</strong> BGR画像をRGBとして表示</p>
-<p><strong>解決:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">image_rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image_bgr</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image_rgb</span><span class="p">)</span>
-</code></pre></div></p>
-<h2 id="_5">チェックリスト</h2>
-<p>開発時は以下を確認してください：</p>
-<ul>
-<li>[ ] カメラ取得後にRGB変換しているか</li>
-<li>[ ] 学習データの読み込みはPILまたはRGB変換済みか</li>
-<li>[ ] 推論時の入力形式は学習時と同じか</li>
-<li>[ ] 画像保存時にBGR変換しているか（OpenCV使用時）</li>
-<li>[ ] 表示時の色空間は正しいか</li>
-</ul>
+<p>確認：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>nmcli<span class="w"> </span>-f<span class="w"> </span>name,autoconnect,autoconnect-priority<span class="w"> </span>connection<span class="w"> </span>show
+</code></pre></div>
+<h2 id="_4">フォールバック動作</h2>
+<p>接続が切れると、<code>autoconnect=true</code> のSSIDの中から優先度順に自動再接続される。</p>
+<h3 id="_5">再試行回数の調整</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>nmcli<span class="w"> </span>connection<span class="w"> </span>modify<span class="w"> </span><span class="s2">&quot;my-wifi&quot;</span><span class="w"> </span>connection.autoconnect-retries<span class="w"> </span><span class="m">3</span><span class="w">  </span><span class="c1"># デフォルト4、-1で無制限</span>
+</code></pre></div>
+<h3 id="wifi">切断検知の高速化（WiFi省電力の無効化）</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>cat<span class="w"> </span><span class="s">&lt;&lt;EOF | sudo tee /etc/NetworkManager/conf.d/wifi-powersave.conf</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="s">[connection]</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="s">wifi.powersave = 2</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="s">EOF</span>
+</code></pre></div>
+<h3 id="_6">自動接続の無効化（手動接続のみにする場合）</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo<span class="w"> </span>nmcli<span class="w"> </span>connection<span class="w"> </span>modify<span class="w"> </span><span class="s2">&quot;mobile-hotspot&quot;</span><span class="w"> </span>connection.autoconnect<span class="w"> </span>no
+</code></pre></div>
+<h2 id="_7">トラブルシュート</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>nmcli<span class="w"> </span>connection<span class="w"> </span>show<span class="w"> </span>--active<span class="w">   </span><span class="c1"># 現在の接続確認</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>ip<span class="w"> </span>addr<span class="w"> </span>show<span class="w"> </span>wlan0<span class="w">               </span><span class="c1"># IPアドレス確認</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>nmcli<span class="w"> </span>monitor<span class="w">                    </span><span class="c1"># 接続状態のリアルタイム監視</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>journalctl<span class="w"> </span>-u<span class="w"> </span>NetworkManager<span class="w"> </span>-f<span class="w">  </span><span class="c1"># ログ確認</span>
+</code></pre></div>
 
 
 
