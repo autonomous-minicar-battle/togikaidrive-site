@@ -2982,39 +2982,43 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;source ~/togikaidrive-dev/venv/bin/activate&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
 </code></pre></div>
 <h3 id="4">4. 依存パッケージのインストール</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>libcap-dev
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>setup/requirements-rpi.txt
+<p>プラットフォームを自動検出し、依存パッケージのインストールと <code>config.py</code> の生成を行います:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>bash<span class="w"> </span>setup/install.sh
+</code></pre></div>
+<p>手動で実行する場合:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>libcap-dev
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>setup/requirements-rpi.txt
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>cp<span class="w"> </span>config_default.py<span class="w"> </span>config.py
 </code></pre></div>
 <hr />
 <h2 id="raspberry-pi">Raspberry Pi セットアップ</h2>
 <h3 id="gpio">GPIO権限の設定</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>gpio<span class="w"> </span><span class="nv">$USER</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># ログアウト/ログインして反映</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>gpio<span class="w"> </span><span class="nv">$USER</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># ログアウト/ログインして反映</span>
 </code></pre></div>
 <h3 id="i2c">I2C有効化（プロポ使用時）</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>raspi-config
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># Interface Options → I2C → Enable</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>raspi-config
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c1"># Interface Options → I2C → Enable</span>
 </code></pre></div>
 <h3 id="uartlidar">UART有効化（LiDAR使用時）</h3>
 <p>LiDARセンサー（YDLidar等）をGPIOのシリアルポート（<code>/dev/ttyAMA0</code>）で接続する場合、UARTの設定が必要です。
 Raspberry PiではデフォルトでシリアルポートがBluetoothに割り当てられているため、GPIOで使用するには切り替えが必要です。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/boot/firmware/config.txt
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/boot/firmware/config.txt
 </code></pre></div>
 <p>末尾に以下を追加:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># UART enable</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="na">enable_uart</span><span class="o">=</span><span class="s">1</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># Use PL011 for GPIO (disable Bluetooth)</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="na">dtoverlay</span><span class="o">=</span><span class="s">disable-bt</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># UART enable</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="na">enable_uart</span><span class="o">=</span><span class="s">1</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># Use PL011 for GPIO (disable Bluetooth)</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="na">dtoverlay</span><span class="o">=</span><span class="s">disable-bt</span>
 </code></pre></div>
 <p>設定後、再起動して反映します:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo<span class="w"> </span>reboot
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>sudo<span class="w"> </span>reboot
 </code></pre></div>
 <p>再起動後、デバイスが認識されていることを確認します:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>ls<span class="w"> </span>-l<span class="w"> </span>/dev/ttyAMA0
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="c1"># crw-rw---- 1 root dialout 204, 64 ... /dev/ttyAMA0 と表示されればOK</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>ls<span class="w"> </span>-l<span class="w"> </span>/dev/ttyAMA0
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="c1"># crw-rw---- 1 root dialout 204, 64 ... /dev/ttyAMA0 と表示されればOK</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Bluetooth無効化</p>
@@ -3028,45 +3032,49 @@ Raspberry PiではデフォルトでシリアルポートがBluetoothに割り�
 <li>Python 3.10.12 がプリインストール済み</li>
 </ul>
 <h3 id="jetpack">JetPack確認</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>cat<span class="w"> </span>/etc/nv_tegra_release
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>cat<span class="w"> </span>/etc/nv_tegra_release
 </code></pre></div>
 <h3 id="_5">仮想環境のセットアップ</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># 必要なパッケージをインストール</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>python3.10-venv<span class="w"> </span>python3.10-dev
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="c1"># user home下に作成</span>
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="nb">cd</span><span class="w"> </span>/home/jetson
-<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
-<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="c1"># 仮想環境を作成（Python 3.10を使用、システムパッケージを参照）</span>
-<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>python3.10<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>--system-site-packages<span class="w"> </span>venv
-<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>
-<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="c1"># 仮想環境を有効化</span>
-<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
-<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>
-<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="c1"># pipをアップグレード</span>
-<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># 必要なパッケージをインストール</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>python3.10-venv<span class="w"> </span>python3.10-dev
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="c1"># user home下に作成</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="nb">cd</span><span class="w"> </span>/home/jetson
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="c1"># 仮想環境を作成（Python 3.10を使用、システムパッケージを参照）</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>python3.10<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>--system-site-packages<span class="w"> </span>venv
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="c1"># 仮想環境を有効化</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="c1"># pipをアップグレード</span>
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
 </code></pre></div>
 <p>次回ログイン時に自動で仮想環境を有効化するには、<code>.bashrc</code> に以下を追記します:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;source /home/jetson/venv/bin/activate&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;source /home/jetson/venv/bin/activate&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
 </code></pre></div>
 <h3 id="uartlidar_1">UART有効化（LiDAR使用時）</h3>
 <p>Jetson Orin NanoではUARTはデフォルトで有効ですが、シリアルデバイスへのアクセス権限が必要です。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># dialoutグループに追加（シリアルポートへのアクセス権限）</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>dialout<span class="w"> </span><span class="nv">$USER</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="c1"># ログアウト/ログインして反映</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># dialoutグループに追加（シリアルポートへのアクセス権限）</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>dialout<span class="w"> </span><span class="nv">$USER</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="c1"># ログアウト/ログインして反映</span>
 </code></pre></div>
 <p>デバイスが認識されていることを確認します:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>ls<span class="w"> </span>-l<span class="w"> </span>/dev/ttyTHS1
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="c1"># crw-rw---- 1 root dialout 238, 1 ... /dev/ttyTHS1 と表示されればOK</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>ls<span class="w"> </span>-l<span class="w"> </span>/dev/ttyTHS1
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="c1"># crw-rw---- 1 root dialout 238, 1 ... /dev/ttyTHS1 と表示されればOK</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Jetsonのシリアルポート</p>
 <p>Jetson Orin Nanoでは <code>/dev/ttyTHS1</code> がGPIOのUARTポートです（Raspberry Piの <code>/dev/ttyAMA0</code> に相当）。config.pyの <code>LIDAR_SERIAL_PORT</code> で指定します。</p>
 </div>
 <h3 id="_6">依存パッケージのインストール</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># 基本パッケージを一括インストール</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>setup/requirements-jetson.txt
+<p>プラットフォームを自動検出し、依存パッケージのインストールと <code>config.py</code> の生成を行います:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>bash<span class="w"> </span>setup/install.sh
+</code></pre></div>
+<p>手動で実行する場合:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>setup/requirements-jetson.txt
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>cp<span class="w"> </span>config_default.py<span class="w"> </span>config.py
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">requirements-jetson.txtの内容</p>
@@ -3081,23 +3089,23 @@ Raspberry PiではデフォルトでシリアルポートがBluetoothに割り�
 <p>PyTorch、torchvision、OpenCVなど特別な対応が必要なパッケージは、以下の個別手順でインストールします。</p>
 </div>
 <h3 id="gpio_1">GPIO権限の設定</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>sudo<span class="w"> </span>groupadd<span class="w"> </span>-f<span class="w"> </span>-r<span class="w"> </span>gpio
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>gpio<span class="w"> </span><span class="nv">$USER</span>
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>sudo<span class="w"> </span>cp<span class="w"> </span>/opt/nvidia/jetson-gpio/etc/99-gpio.rules<span class="w"> </span>/etc/udev/rules.d/
-<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>sudo<span class="w"> </span>udevadm<span class="w"> </span>control<span class="w"> </span>--reload-rules<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>udevadm<span class="w"> </span>trigger
-<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="c1"># ログアウト/ログインして反映</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>sudo<span class="w"> </span>groupadd<span class="w"> </span>-f<span class="w"> </span>-r<span class="w"> </span>gpio
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>gpio<span class="w"> </span><span class="nv">$USER</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>sudo<span class="w"> </span>cp<span class="w"> </span>/opt/nvidia/jetson-gpio/etc/99-gpio.rules<span class="w"> </span>/etc/udev/rules.d/
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>sudo<span class="w"> </span>udevadm<span class="w"> </span>control<span class="w"> </span>--reload-rules<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>udevadm<span class="w"> </span>trigger
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="c1"># ログアウト/ログインして反映</span>
 </code></pre></div>
 <p>JetPack 6.2 で利用する場合は、追加の設定が必要な場合があります：</p>
 <ul>
 <li>参考: <a href="https://github.com/FaBoPlatform/FaBo/tree/master/0608_donkeycar/JetsonGPIO/ai_car_board">FaBo JetsonGPIO 設定ガイド</a></li>
 </ul>
 <h3 id="i2c_1">I2C権限の設定</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>i2c<span class="w"> </span><span class="nv">$USER</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="c1"># ログアウト/ログインして反映</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>i2c<span class="w"> </span><span class="nv">$USER</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="c1"># ログアウト/ログインして反映</span>
 </code></pre></div>
 <h3 id="pytorchnvidiawheel">PyTorchのインストール（NVIDIA公式Wheel）</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># PyTorch 2.5.0 for Jetson（JetPack 6.1/6.2共通、Python 3.10用）</span>
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>pip3<span class="w"> </span>install<span class="w"> </span>--no-cache<span class="w"> </span>https://developer.download.nvidia.com/compute/redist/jp/v61/pytorch/torch-2.5.0a0+872d972e41.nv24.08.17622132-cp310-cp310-linux_aarch64.whl
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># PyTorch 2.5.0 for Jetson（JetPack 6.1/6.2共通、Python 3.10用）</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>pip3<span class="w"> </span>install<span class="w"> </span>--no-cache<span class="w"> </span>https://developer.download.nvidia.com/compute/redist/jp/v61/pytorch/torch-2.5.0a0+872d972e41.nv24.08.17622132-cp310-cp310-linux_aarch64.whl
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Python バージョンに注意</p>
@@ -3105,43 +3113,43 @@ Raspberry PiではデフォルトでシリアルポートがBluetoothに割り�
 </div>
 <h3 id="libcusparselt">libcusparseLtのインストール（必須）</h3>
 <p>PyTorchの実行に必要なCUDAライブラリをインストールします：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># cuSPARSELt パッケージをダウンロード・インストール</span>
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>wget<span class="w"> </span>https://developer.download.nvidia.com/compute/cusparselt/0.6.3/local_installers/cusparselt-local-tegra-repo-ubuntu2204-0.6.3_1.0-1_arm64.deb
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>cusparselt-local-tegra-repo-ubuntu2204-0.6.3_1.0-1_arm64.deb
-<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>sudo<span class="w"> </span>cp<span class="w"> </span>/var/cusparselt-local-tegra-repo-ubuntu2204-0.6.3/cusparselt-*-keyring.gpg<span class="w"> </span>/usr/share/keyrings/
-<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
-<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>libcusparselt0<span class="w"> </span>libcusparselt-dev
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># cuSPARSELt パッケージをダウンロード・インストール</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>wget<span class="w"> </span>https://developer.download.nvidia.com/compute/cusparselt/0.6.3/local_installers/cusparselt-local-tegra-repo-ubuntu2204-0.6.3_1.0-1_arm64.deb
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>cusparselt-local-tegra-repo-ubuntu2204-0.6.3_1.0-1_arm64.deb
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>sudo<span class="w"> </span>cp<span class="w"> </span>/var/cusparselt-local-tegra-repo-ubuntu2204-0.6.3/cusparselt-*-keyring.gpg<span class="w"> </span>/usr/share/keyrings/
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>libcusparselt0<span class="w"> </span>libcusparselt-dev
 </code></pre></div>
 <p>参考: <a href="https://developer.nvidia.com/cusparselt-downloads?target_os=Linux&amp;target_arch=aarch64-jetson&amp;Compilation=Native&amp;Distribution=Ubuntu&amp;target_version=22.04&amp;target_type=deb_local">NVIDIA cuSPARSELt Downloads</a></p>
 <h3 id="torchvision">torchvisionのインストール（ソースからビルド）</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># 依存パッケージをインストール</span>
-<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>libjpeg-dev<span class="w"> </span>zlib1g-dev<span class="w"> </span>libpython3-dev<span class="w"> </span>libopenblas-dev<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">    </span>libavcodec-dev<span class="w"> </span>libavformat-dev<span class="w"> </span>libswscale-dev
-<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>
-<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="c1"># torchvision をクローン</span>
-<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span>release/0.20<span class="w"> </span>https://github.com/pytorch/vision<span class="w"> </span>torchvision
-<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="nb">cd</span><span class="w"> </span>torchvision
-<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>
-<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="c1"># ビルドしてインストール</span>
-<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="nb">export</span><span class="w"> </span><span class="nv">BUILD_VERSION</span><span class="o">=</span><span class="m">0</span>.20.0
-<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>python3<span class="w"> </span>setup.py<span class="w"> </span>install
-<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>
-<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a><span class="nb">cd</span><span class="w"> </span>..
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># 依存パッケージをインストール</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>libjpeg-dev<span class="w"> </span>zlib1g-dev<span class="w"> </span>libpython3-dev<span class="w"> </span>libopenblas-dev<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">    </span>libavcodec-dev<span class="w"> </span>libavformat-dev<span class="w"> </span>libswscale-dev
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="c1"># torchvision をクローン</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span>release/0.20<span class="w"> </span>https://github.com/pytorch/vision<span class="w"> </span>torchvision
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="nb">cd</span><span class="w"> </span>torchvision
+<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>
+<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="c1"># ビルドしてインストール</span>
+<a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="nb">export</span><span class="w"> </span><span class="nv">BUILD_VERSION</span><span class="o">=</span><span class="m">0</span>.20.0
+<a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a>python3<span class="w"> </span>setup.py<span class="w"> </span>install
+<a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a>
+<a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a><span class="nb">cd</span><span class="w"> </span>..
 </code></pre></div>
 <h3 id="opencv">OpenCVの確認</h3>
 <p>Jetson には OpenCV がプリインストールされています：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import cv2; print(cv2.__version__)&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import cv2; print(cv2.__version__)&quot;</span>
 </code></pre></div>
 <h3 id="_7">インストール確認</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># Python とパッケージのバージョン確認</span>
-<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>python<span class="w"> </span>--version
-<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>pip<span class="w"> </span>list
-<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>
-<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="c1"># PyTorch の動作確認</span>
-<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import torch; print(f&#39;PyTorch version: {torch.__version__}&#39;); print(f&#39;CUDA available: {torch.cuda.is_available()}&#39;)&quot;</span>
-<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>
-<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="c1"># GPIO ライブラリの確認</span>
-<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import Jetson.GPIO; print(&#39;Jetson.GPIO OK&#39;)&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># Python とパッケージのバージョン確認</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>python<span class="w"> </span>--version
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>pip<span class="w"> </span>list
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="c1"># PyTorch の動作確認</span>
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import torch; print(f&#39;PyTorch version: {torch.__version__}&#39;); print(f&#39;CUDA available: {torch.cuda.is_available()}&#39;)&quot;</span>
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="c1"># GPIO ライブラリの確認</span>
+<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import Jetson.GPIO; print(&#39;Jetson.GPIO OK&#39;)&quot;</span>
 </code></pre></div>
 <hr />
 <h2 id="_8">ハードウェア接続</h2>
@@ -3221,8 +3229,8 @@ Raspberry PiではデフォルトでシリアルポートがBluetoothに割り�
 <h3 id="_9">カメラ</h3>
 <p><strong>Raspberry Pi:</strong>
 - CSIカメラまたはUSBカメラ</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># カメラの接続確認</span>
-<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>rpicam-hello<span class="w"> </span>--list-cameras
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1"># カメラの接続確認</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>rpicam-hello<span class="w"> </span>--list-cameras
 </code></pre></div>
 <p><strong>Jetson:</strong>
 - CSIカメラ（推奨）またはUSBカメラ</p>
@@ -3230,70 +3238,70 @@ Raspberry PiではデフォルトでシリアルポートがBluetoothに割り�
 <h2 id="ydlidar-tmini">YDLIDAR TMINI セットアップ</h2>
 <p>YDLIDAR TMINIを使用する場合の設定手順です。</p>
 <h3 id="1-ydlidar-sdk">1. YDLidar SDKのインストール</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># 必要なパッケージをインストール</span>
-<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
-<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>cmake
-<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>swig<span class="w"> </span>python3-dev
-<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>
-<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="c1"># SDKをクローン</span>
-<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="nb">cd</span><span class="w"> </span>~
-<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/YDLIDAR/YDLidar-SDK.git
-<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="nb">cd</span><span class="w"> </span>YDLidar-SDK
-<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>
-<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a><span class="c1"># ビルド</span>
-<a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a>mkdir<span class="w"> </span>build
-<a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a><span class="nb">cd</span><span class="w"> </span>build
-<a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a>cmake<span class="w"> </span>..
-<a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a>make
-<a id="__codelineno-25-16" name="__codelineno-25-16" href="#__codelineno-25-16"></a>sudo<span class="w"> </span>make<span class="w"> </span>install
-<a id="__codelineno-25-17" name="__codelineno-25-17" href="#__codelineno-25-17"></a>
-<a id="__codelineno-25-18" name="__codelineno-25-18" href="#__codelineno-25-18"></a><span class="c1"># Pythonバインディングをインストール</span>
-<a id="__codelineno-25-19" name="__codelineno-25-19" href="#__codelineno-25-19"></a><span class="nb">cd</span><span class="w"> </span>..
-<a id="__codelineno-25-20" name="__codelineno-25-20" href="#__codelineno-25-20"></a>pip<span class="w"> </span>install<span class="w"> </span>.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1"># 必要なパッケージをインストール</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>cmake
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>swig<span class="w"> </span>python3-dev
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="c1"># SDKをクローン</span>
+<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="nb">cd</span><span class="w"> </span>~
+<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/YDLIDAR/YDLidar-SDK.git
+<a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a><span class="nb">cd</span><span class="w"> </span>YDLidar-SDK
+<a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a>
+<a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a><span class="c1"># ビルド</span>
+<a id="__codelineno-27-12" name="__codelineno-27-12" href="#__codelineno-27-12"></a>mkdir<span class="w"> </span>build
+<a id="__codelineno-27-13" name="__codelineno-27-13" href="#__codelineno-27-13"></a><span class="nb">cd</span><span class="w"> </span>build
+<a id="__codelineno-27-14" name="__codelineno-27-14" href="#__codelineno-27-14"></a>cmake<span class="w"> </span>..
+<a id="__codelineno-27-15" name="__codelineno-27-15" href="#__codelineno-27-15"></a>make
+<a id="__codelineno-27-16" name="__codelineno-27-16" href="#__codelineno-27-16"></a>sudo<span class="w"> </span>make<span class="w"> </span>install
+<a id="__codelineno-27-17" name="__codelineno-27-17" href="#__codelineno-27-17"></a>
+<a id="__codelineno-27-18" name="__codelineno-27-18" href="#__codelineno-27-18"></a><span class="c1"># Pythonバインディングをインストール</span>
+<a id="__codelineno-27-19" name="__codelineno-27-19" href="#__codelineno-27-19"></a><span class="nb">cd</span><span class="w"> </span>..
+<a id="__codelineno-27-20" name="__codelineno-27-20" href="#__codelineno-27-20"></a>pip<span class="w"> </span>install<span class="w"> </span>.
 </code></pre></div>
 <h3 id="2_1">2. シリアルポートの設定</h3>
 <p>YDLIDAR TMINIはシリアル（UART）接続を使用します。</p>
 <p><strong>Raspberry Pi:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1"># Bluetoothを無効化してハードウェアUARTを開放</span>
-<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>sudo<span class="w"> </span>raspi-config
-<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="c1"># Interface Options → Serial Port</span>
-<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="c1"># - login shell over serial: No</span>
-<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="c1"># - serial port hardware: Yes</span>
-<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>
-<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="c1"># /boot/firmware/config.txtに追記</span>
-<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;dtoverlay=disable-bt&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/boot/firmware/config.txt
-<a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>
-<a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a><span class="c1"># 再起動</span>
-<a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a>sudo<span class="w"> </span>reboot
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="c1"># Bluetoothを無効化してハードウェアUARTを開放</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>sudo<span class="w"> </span>raspi-config
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="c1"># Interface Options → Serial Port</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="c1"># - login shell over serial: No</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="c1"># - serial port hardware: Yes</span>
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="c1"># /boot/firmware/config.txtに追記</span>
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;dtoverlay=disable-bt&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/boot/firmware/config.txt
+<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a>
+<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a><span class="c1"># 再起動</span>
+<a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a>sudo<span class="w"> </span>reboot
 </code></pre></div>
 <p><strong>シリアルポートの権限設定:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1"># dialoutグループに追加</span>
-<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>dialout<span class="w"> </span><span class="nv">$USER</span>
-<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="c1"># ログアウト/ログインして反映</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="c1"># dialoutグループに追加</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>dialout<span class="w"> </span><span class="nv">$USER</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="c1"># ログアウト/ログインして反映</span>
 </code></pre></div>
 <h3 id="3-udev">3. udevルールの設定（推奨）</h3>
 <p>デバイス名を固定するためのudevルールを設定します。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="c1"># udevルールファイルを作成</span>
-<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/udev/rules.d/99-ydlidar.rules
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="c1"># udevルールファイルを作成</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/udev/rules.d/99-ydlidar.rules
 </code></pre></div>
 <p>以下の内容を追加:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>KERNEL==&quot;ttyAMA0&quot;, MODE=&quot;0666&quot;
-<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>KERNEL==&quot;ttyUSB*&quot;, ATTRS{idVendor}==&quot;10c4&quot;, ATTRS{idProduct}==&quot;ea60&quot;, MODE=&quot;0666&quot;, SYMLINK+=&quot;ydlidar&quot;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>KERNEL==&quot;ttyAMA0&quot;, MODE=&quot;0666&quot;
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>KERNEL==&quot;ttyUSB*&quot;, ATTRS{idVendor}==&quot;10c4&quot;, ATTRS{idProduct}==&quot;ea60&quot;, MODE=&quot;0666&quot;, SYMLINK+=&quot;ydlidar&quot;
 </code></pre></div></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="c1"># ルールを適用</span>
-<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>sudo<span class="w"> </span>udevadm<span class="w"> </span>control<span class="w"> </span>--reload-rules<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>udevadm<span class="w"> </span>trigger
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="c1"># ルールを適用</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>sudo<span class="w"> </span>udevadm<span class="w"> </span>control<span class="w"> </span>--reload-rules<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>udevadm<span class="w"> </span>trigger
 </code></pre></div>
 <h3 id="4-configpy">4. config.pyの設定</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="c1"># LiDARを有効化</span>
-<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="n">HAVE_LIDAR</span> <span class="o">=</span> <span class="kc">True</span>
-<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="n">LIDAR_TYPE</span> <span class="o">=</span> <span class="s2">&quot;TMINI&quot;</span>
-<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>
-<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="c1"># シリアルポート設定</span>
-<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span class="n">LIDAR_SERIAL_PORT</span> <span class="o">=</span> <span class="s2">&quot;/dev/ttyAMA0&quot;</span>  <span class="c1"># RPiのハードウェアUART</span>
-<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a><span class="n">LIDAR_SERIAL_BAUDRATE</span> <span class="o">=</span> <span class="mi">230400</span>
-<a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a>
-<a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a><span class="c1"># アクティブセンサーにLiDARを追加</span>
-<a id="__codelineno-31-10" name="__codelineno-31-10" href="#__codelineno-31-10"></a><span class="n">ACTIVE_SENSORS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;lidar&quot;</span><span class="p">]</span>  <span class="c1"># または [&quot;ultrasonic&quot;, &quot;lidar&quot;]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="c1"># LiDARを有効化</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="n">HAVE_LIDAR</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="n">LIDAR_TYPE</span> <span class="o">=</span> <span class="s2">&quot;TMINI&quot;</span>
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="c1"># シリアルポート設定</span>
+<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a><span class="n">LIDAR_SERIAL_PORT</span> <span class="o">=</span> <span class="s2">&quot;/dev/ttyAMA0&quot;</span>  <span class="c1"># RPiのハードウェアUART</span>
+<a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a><span class="n">LIDAR_SERIAL_BAUDRATE</span> <span class="o">=</span> <span class="mi">230400</span>
+<a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a>
+<a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a><span class="c1"># アクティブセンサーにLiDARを追加</span>
+<a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a><span class="n">ACTIVE_SENSORS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;lidar&quot;</span><span class="p">]</span>  <span class="c1"># または [&quot;ultrasonic&quot;, &quot;lidar&quot;]</span>
 </code></pre></div>
 <h3 id="5">5. 接続図</h3>
 <table>
@@ -3327,51 +3335,51 @@ Raspberry PiではデフォルトでシリアルポートがBluetoothに割り�
 <p>YDLIDAR TMINIは5V電源が必要です。GPIO5Vピン、USB電源からの供給、または別電源を使用してください。</p>
 </div>
 <h3 id="6">6. 動作確認</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="c1"># シリアルポートの確認</span>
-<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>ls<span class="w"> </span>-la<span class="w"> </span>/dev/ttyAMA0
-<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>
-<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="c1"># LiDAR単体テスト</span>
-<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>python<span class="w"> </span>lidar.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="c1"># シリアルポートの確認</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>ls<span class="w"> </span>-la<span class="w"> </span>/dev/ttyAMA0
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>
+<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="c1"># LiDAR単体テスト</span>
+<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a>python<span class="w"> </span>lidar.py
 </code></pre></div>
 <p>ブラウザで <code>http://localhost:8080</code> にアクセスして点群データを確認できます。</p>
 <hr />
 <h2 id="_10">動作確認</h2>
 <h3 id="1_1">1. 超音波センサー</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>python<span class="w"> </span>ultrasonic.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>python<span class="w"> </span>ultrasonic.py
 </code></pre></div>
 <h3 id="2_2">2. モーター</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>python<span class="w"> </span>motor.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>python<span class="w"> </span>motor.py
 </code></pre></div>
 <h3 id="3_1">3. カメラ</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>python<span class="w"> </span>camera.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>python<span class="w"> </span>camera.py
 </code></pre></div>
 <h3 id="4-lidarydlidar-tmini">4. LiDAR（YDLIDAR TMINIの場合）</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>python<span class="w"> </span>lidar.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>python<span class="w"> </span>lidar.py
 </code></pre></div>
 <p>ブラウザで <code>http://localhost:8080</code> にアクセスして確認。</p>
 <h3 id="5_1">5. 統合テスト</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>python<span class="w"> </span>run.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>python<span class="w"> </span>run.py
 </code></pre></div>
 <hr />
 <h2 id="_11">トラブルシューティング</h2>
 <h3 id="gpio_2">GPIOアクセスエラー</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>RuntimeError: No access to /dev/mem
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>RuntimeError: No access to /dev/mem
 </code></pre></div>
 <p><strong>対策:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>gpio<span class="w"> </span><span class="nv">$USER</span>
-<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="c1"># ログアウト/ログイン</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>gpio<span class="w"> </span><span class="nv">$USER</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="c1"># ログアウト/ログイン</span>
 </code></pre></div></p>
 <h3 id="i2c_2">I2Cデバイスが見つからない</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="c1"># デバイス確認</span>
-<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>sudo<span class="w"> </span>i2cdetect<span class="w"> </span>-y<span class="w"> </span><span class="m">1</span><span class="w">  </span><span class="c1"># Raspberry Pi</span>
-<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>sudo<span class="w"> </span>i2cdetect<span class="w"> </span>-y<span class="w"> </span><span class="m">7</span><span class="w">  </span><span class="c1"># Jetson</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="c1"># デバイス確認</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>sudo<span class="w"> </span>i2cdetect<span class="w"> </span>-y<span class="w"> </span><span class="m">1</span><span class="w">  </span><span class="c1"># Raspberry Pi</span>
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a>sudo<span class="w"> </span>i2cdetect<span class="w"> </span>-y<span class="w"> </span><span class="m">7</span><span class="w">  </span><span class="c1"># Jetson</span>
 </code></pre></div>
 <h3 id="_12">カメラが認識されない</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="c1"># Raspberry Pi</span>
-<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>vcgencmd<span class="w"> </span>get_camera
-<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a>
-<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="c1"># Jetson</span>
-<a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a>ls<span class="w"> </span>/dev/video*
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="c1"># Raspberry Pi</span>
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>vcgencmd<span class="w"> </span>get_camera
+<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a>
+<a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a><span class="c1"># Jetson</span>
+<a id="__codelineno-43-5" name="__codelineno-43-5" href="#__codelineno-43-5"></a>ls<span class="w"> </span>/dev/video*
 </code></pre></div>
 <h3 id="_13">モーターが動かない</h3>
 <ol>
@@ -3381,63 +3389,63 @@ Raspberry PiではデフォルトでシリアルポートがBluetoothに割り�
 </ol>
 <h3 id="lidarydlidar-tmini">LiDARが動作しない（YDLIDAR TMINI）</h3>
 <p><strong>シリアルポートが見つからない:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="c1"># デバイス確認</span>
-<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>ls<span class="w"> </span>-la<span class="w"> </span>/dev/ttyAMA0
-<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a>ls<span class="w"> </span>-la<span class="w"> </span>/dev/ttyUSB*
-<a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a>
-<a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a><span class="c1"># 権限確認</span>
-<a id="__codelineno-42-6" name="__codelineno-42-6" href="#__codelineno-42-6"></a>groups<span class="w">  </span><span class="c1"># dialoutグループに所属しているか確認</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="c1"># デバイス確認</span>
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>ls<span class="w"> </span>-la<span class="w"> </span>/dev/ttyAMA0
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a>ls<span class="w"> </span>-la<span class="w"> </span>/dev/ttyUSB*
+<a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a>
+<a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a><span class="c1"># 権限確認</span>
+<a id="__codelineno-44-6" name="__codelineno-44-6" href="#__codelineno-44-6"></a>groups<span class="w">  </span><span class="c1"># dialoutグループに所属しているか確認</span>
 </code></pre></div></p>
 <p><strong>ydlidarモジュールが見つからない:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="c1"># SDKの再インストール</span>
-<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="nb">cd</span><span class="w"> </span>~/YDLidar-SDK
-<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a>pip<span class="w"> </span>install<span class="w"> </span>.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="c1"># SDKの再インストール</span>
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="nb">cd</span><span class="w"> </span>~/YDLidar-SDK
+<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a>pip<span class="w"> </span>install<span class="w"> </span>.
 </code></pre></div></p>
 <p><strong>「Fail to get baseplate device information」エラー:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>[error] Fail to get baseplate device information!
-<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>[error] Timeout count: 1
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>[error] Fail to get baseplate device information!
+<a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a>[error] Timeout count: 1
 </code></pre></div>
 UARTのシリアルポート設定が正しくない可能性があります。<code>raspi-config</code>で手動設定してください:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>sudo<span class="w"> </span>raspi-config
-<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="c1"># Interface Options → Serial Port</span>
-<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="c1"># - login shell over serial: No</span>
-<a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a><span class="c1"># - serial port hardware: Yes</span>
-<a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a>sudo<span class="w"> </span>reboot
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>sudo<span class="w"> </span>raspi-config
+<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="c1"># Interface Options → Serial Port</span>
+<a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a><span class="c1"># - login shell over serial: No</span>
+<a id="__codelineno-47-4" name="__codelineno-47-4" href="#__codelineno-47-4"></a><span class="c1"># - serial port hardware: Yes</span>
+<a id="__codelineno-47-5" name="__codelineno-47-5" href="#__codelineno-47-5"></a>sudo<span class="w"> </span>reboot
 </code></pre></div></p>
 <p><strong>データが取得できない:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="c1"># Bluetoothが無効化されているか確認（RPiの場合）</span>
-<a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a>hciconfig<span class="w">  </span><span class="c1"># 何も表示されなければ無効化済み</span>
-<a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a>
-<a id="__codelineno-46-4" name="__codelineno-46-4" href="#__codelineno-46-4"></a><span class="c1"># シリアルポートのボーレート確認</span>
-<a id="__codelineno-46-5" name="__codelineno-46-5" href="#__codelineno-46-5"></a><span class="c1"># config.pyのLIDAR_SERIAL_BAUDRATEが230400になっているか確認</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="c1"># Bluetoothが無効化されているか確認（RPiの場合）</span>
+<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a>hciconfig<span class="w">  </span><span class="c1"># 何も表示されなければ無効化済み</span>
+<a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a>
+<a id="__codelineno-48-4" name="__codelineno-48-4" href="#__codelineno-48-4"></a><span class="c1"># シリアルポートのボーレート確認</span>
+<a id="__codelineno-48-5" name="__codelineno-48-5" href="#__codelineno-48-5"></a><span class="c1"># config.pyのLIDAR_SERIAL_BAUDRATEが230400になっているか確認</span>
 </code></pre></div></p>
 <h3 id="oled">OLEDが表示されない</h3>
 <p><strong>I2C接続を確認:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>sudo<span class="w"> </span>i2cdetect<span class="w"> </span>-y<span class="w"> </span>-r<span class="w"> </span><span class="m">7</span><span class="w">  </span><span class="c1"># Jetson</span>
-<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a>sudo<span class="w"> </span>i2cdetect<span class="w"> </span>-y<span class="w"> </span><span class="m">1</span><span class="w">     </span><span class="c1"># Raspberry Pi</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>sudo<span class="w"> </span>i2cdetect<span class="w"> </span>-y<span class="w"> </span>-r<span class="w"> </span><span class="m">7</span><span class="w">  </span><span class="c1"># Jetson</span>
+<a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a>sudo<span class="w"> </span>i2cdetect<span class="w"> </span>-y<span class="w"> </span><span class="m">1</span><span class="w">     </span><span class="c1"># Raspberry Pi</span>
 </code></pre></div></p>
 <p><strong>I2Cアドレスが異なる場合:</strong></p>
 <p><code>oled_ip_display.py</code> の <code>addr=0x3C</code> を実際のアドレスに変更してください。</p>
 <p><strong>サービスログを確認:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>sudo<span class="w"> </span>journalctl<span class="w"> </span>-u<span class="w"> </span>oled-ip-display.service<span class="w"> </span>-f
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>sudo<span class="w"> </span>journalctl<span class="w"> </span>-u<span class="w"> </span>oled-ip-display.service<span class="w"> </span>-f
 </code></pre></div></p>
 <h3 id="pytorchcudajetson">PyTorchでCUDAが認識されない（Jetson）</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="c1"># libcusparseLtがインストールされているか確認</span>
-<a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a>dpkg<span class="w"> </span>-l<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>cusparselt
-<a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a>
-<a id="__codelineno-49-4" name="__codelineno-49-4" href="#__codelineno-49-4"></a><span class="c1"># 未インストールの場合は再インストール</span>
-<a id="__codelineno-49-5" name="__codelineno-49-5" href="#__codelineno-49-5"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libcusparselt0<span class="w"> </span>libcusparselt-dev
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="c1"># libcusparseLtがインストールされているか確認</span>
+<a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a>dpkg<span class="w"> </span>-l<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>cusparselt
+<a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a>
+<a id="__codelineno-51-4" name="__codelineno-51-4" href="#__codelineno-51-4"></a><span class="c1"># 未インストールの場合は再インストール</span>
+<a id="__codelineno-51-5" name="__codelineno-51-5" href="#__codelineno-51-5"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libcusparselt0<span class="w"> </span>libcusparselt-dev
 </code></pre></div>
 <hr />
 <h2 id="oled_1">OLEDディスプレイのセットアップ（オプション）</h2>
 <p>起動時にIPアドレスを表示するOLEDディスプレイ（SSD1306）を使用する場合の設定です。</p>
 <h3 id="1-i2c">1. I2Cの有効化</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="c1"># I2Cツールをインストール</span>
-<a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>i2c-tools
-<a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a>
-<a id="__codelineno-50-4" name="__codelineno-50-4" href="#__codelineno-50-4"></a><span class="c1"># I2Cデバイスを確認（0x3Cにディスプレイが表示されるはず）</span>
-<a id="__codelineno-50-5" name="__codelineno-50-5" href="#__codelineno-50-5"></a>sudo<span class="w"> </span>i2cdetect<span class="w"> </span>-y<span class="w"> </span>-r<span class="w"> </span><span class="m">7</span><span class="w">  </span><span class="c1"># Jetson</span>
-<a id="__codelineno-50-6" name="__codelineno-50-6" href="#__codelineno-50-6"></a>sudo<span class="w"> </span>i2cdetect<span class="w"> </span>-y<span class="w"> </span><span class="m">1</span><span class="w">     </span><span class="c1"># Raspberry Pi</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="c1"># I2Cツールをインストール</span>
+<a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>i2c-tools
+<a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a>
+<a id="__codelineno-52-4" name="__codelineno-52-4" href="#__codelineno-52-4"></a><span class="c1"># I2Cデバイスを確認（0x3Cにディスプレイが表示されるはず）</span>
+<a id="__codelineno-52-5" name="__codelineno-52-5" href="#__codelineno-52-5"></a>sudo<span class="w"> </span>i2cdetect<span class="w"> </span>-y<span class="w"> </span>-r<span class="w"> </span><span class="m">7</span><span class="w">  </span><span class="c1"># Jetson</span>
+<a id="__codelineno-52-6" name="__codelineno-52-6" href="#__codelineno-52-6"></a>sudo<span class="w"> </span>i2cdetect<span class="w"> </span>-y<span class="w"> </span><span class="m">1</span><span class="w">     </span><span class="c1"># Raspberry Pi</span>
 </code></pre></div>
 <h3 id="2_3">2. サービスのインストール</h3>
 <div class="admonition note">
@@ -3445,15 +3453,15 @@ UARTのシリアルポート設定が正しくない可能性があります。<
 <p>OLEDスクリプトはsmbus + Pillowのみで動作します（追加ライブラリ不要）。</p>
 </div>
 <p>インストールスクリプトが現在のユーザー名とパスを自動検出してサービスを設定します:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>bash<span class="w"> </span>setup/ip_address_display/install_oled_service.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>bash<span class="w"> </span>setup/ip_address_display/install_oled_service.sh
 </code></pre></div>
 <h3 id="3_2">3. 手動でのテスト</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="c1"># プロジェクトディレクトリから実行</span>
-<a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a>./setup/ip_address_display/oled_ip_display.sh
-<a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a>
-<a id="__codelineno-52-4" name="__codelineno-52-4" href="#__codelineno-52-4"></a><span class="c1"># またはPythonスクリプトを直接実行</span>
-<a id="__codelineno-52-5" name="__codelineno-52-5" href="#__codelineno-52-5"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
-<a id="__codelineno-52-6" name="__codelineno-52-6" href="#__codelineno-52-6"></a>python3<span class="w"> </span>setup/ip_address_display/oled_ip_display.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="c1"># プロジェクトディレクトリから実行</span>
+<a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a>./setup/ip_address_display/oled_ip_display.sh
+<a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a>
+<a id="__codelineno-54-4" name="__codelineno-54-4" href="#__codelineno-54-4"></a><span class="c1"># またはPythonスクリプトを直接実行</span>
+<a id="__codelineno-54-5" name="__codelineno-54-5" href="#__codelineno-54-5"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+<a id="__codelineno-54-6" name="__codelineno-54-6" href="#__codelineno-54-6"></a>python3<span class="w"> </span>setup/ip_address_display/oled_ip_display.py
 </code></pre></div>
 <h3 id="oled_2">OLED接続図</h3>
 <table>
